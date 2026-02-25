@@ -1,6 +1,6 @@
-namespace Hypesoft.Application.DTOs
+namespace Hypesoft.Application.DTOs.Produtos
 {
-    public class ProdutoDto
+    public class ProdutoRequestDto
     {
         public string Nome { get; set; } = null!;
         public string Descricao { get; set; } = null!;
