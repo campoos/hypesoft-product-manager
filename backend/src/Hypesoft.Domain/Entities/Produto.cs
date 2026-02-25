@@ -1,9 +1,13 @@
 using System;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 namespace Hypesoft.Domain.Entities
 {
     public class Produto
     {
-        public string Id { get; set; } = string.Empty;
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string? Id { get; set; }
         
         private string _nome = string.Empty;
         public string Nome

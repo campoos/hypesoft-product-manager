@@ -5,6 +5,7 @@ using Hypesoft.Application.DTOs.Produtos;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
 using System.Data.Common;
 
 namespace Hypesoft.Application.Handlers.Produtos
@@ -33,7 +34,7 @@ namespace Hypesoft.Application.Handlers.Produtos
 
             return new ProdutoResponseDto
             {
-                Id = criado.Id,
+                Id = criado.Id ?? throw new InvalidOperationException("MongoDB não gerou o Id do produto."),
                 Nome = criado.Nome,
                 Descricao = criado.Descricao,
                 Preco = criado.Preco,
