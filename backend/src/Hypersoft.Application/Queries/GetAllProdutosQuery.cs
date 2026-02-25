@@ -1,10 +1,10 @@
-using Hypersoft.Domain.Entities;
+using Hypesoft.Application.DTOs.Produtos;
 using MediatR;
 using System.Collections.Generic;
 
 namespace Hypesoft.Application.Queries.Produtos
 {
-    public class GetAllProdutosQuery : IResquest<List<Produtos>>
+    public class GetAllProdutosQuery : IResquest<List<ProdutoResponseDto>>
     {
 
     }

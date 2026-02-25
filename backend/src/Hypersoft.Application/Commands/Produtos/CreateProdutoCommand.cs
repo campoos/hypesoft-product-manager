@@ -1,13 +1,13 @@
-using Hypesoft.Application.DTOs;
+using Hypesoft.Application.DTOs.Produtos;
 using MediatR;
 
 namespace Hypesoft.Application.Commands.Produtos
 {
-    public class CreateProdutoCommand : IRequest<ProdutoDto>
+    public class CreateProdutoCommand : IRequest<ProdutoResponseDto>
     {
-        public ProdutoDto Produto { get; }
+        public ProdutoRequestDto Produto { get; }
 
-        public CreateProdutoCommand(ProdutoDto produto)
+        public CreateProdutoCommand(ProdutoRequestDto produto)
         {
             Produto = produto;
         }
