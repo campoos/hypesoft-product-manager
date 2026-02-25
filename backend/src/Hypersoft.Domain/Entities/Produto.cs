@@ -1,0 +1,60 @@
+namespace Hypesoft.Domain.Entities
+{
+    public class Produto
+    {
+        public string Id { get; set; }
+        
+        private string _nome;
+        public string Nome
+        {
+            get => _nome;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
+                    throw new Exception("Nome do produto deve ter ao mínimo 3 caracteres.");
+                
+                _nome = value;
+            }
+        }
+
+        private string _descricao;
+        public string Descricao
+        {
+            get => _descricao;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
+                    throw new Exception("Descrição no mínimo deve ter 3 caracteres.");
+
+                _descricao = value;
+            }
+        }
+
+        private decimal _preco;
+        public decimal Preco
+        {
+            get => _preco;
+            set
+            {
+                if (value < 0)
+                    throw new Exception("Preço não pode ser negativo!");
+
+                _preco = value;
+            }
+        }
+        public string CategoriaId { get; set; } 
+
+        private int _quantidadeEmEstoque;
+        public int QuantidadeEmEstoque
+        {
+            get => _quantidadeEmEstoque;
+            set
+            {
+                if (value < 0)
+                    throw new Exception("Quantidade deve ser um número igual ou maior a 0");
+            
+                _quantidadeEmEstoque = value;
+            }
+        }
+    }
+}
