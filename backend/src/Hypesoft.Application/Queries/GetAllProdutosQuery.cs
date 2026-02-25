@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Hypesoft.Application.Queries.Produtos
 {
-    public class GetAllProdutosQuery : IResquest<List<ProdutoResponseDto>>
+    public class GetAllProdutosQuery : IRequest<List<ProdutoResponseDto>>
     {
 
     }

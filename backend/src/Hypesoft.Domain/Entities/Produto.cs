@@ -1,10 +1,11 @@
+using System;
 namespace Hypesoft.Domain.Entities
 {
     public class Produto
     {
-        public string Id { get; set; }
+        public string Id { get; set; } = string.Empty;
         
-        private string _nome;
+        private string _nome = string.Empty;
         public string Nome
         {
             get => _nome;
@@ -17,7 +18,7 @@ namespace Hypesoft.Domain.Entities
             }
         }
 
-        private string _descricao;
+        private string _descricao = string.Empty;
         public string Descricao
         {
             get => _descricao;
@@ -42,7 +43,7 @@ namespace Hypesoft.Domain.Entities
                 _preco = value;
             }
         }
-        public string CategoriaId { get; set; } 
+        public string CategoriaId { get; set; } = string.Empty;
 
         private int _quantidadeEmEstoque;
         public int QuantidadeEmEstoque

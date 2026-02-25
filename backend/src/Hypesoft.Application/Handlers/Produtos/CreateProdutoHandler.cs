@@ -9,7 +9,7 @@ using System.Data.Common;
 
 namespace Hypesoft.Application.Handlers.Produtos
 {
-    public class CreateProdutoHandler : IRequestHandler<CreateProdutoCommand, ProdutoDto>
+    public class CreateProdutoHandler : IRequestHandler<CreateProdutoCommand, ProdutoResponseDto>
     {
         private readonly IProdutoRepository _produtoRepository;
 

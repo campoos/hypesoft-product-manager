@@ -1,4 +1,7 @@
-using Hypesoft.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Hypesoft.Domain.Entities; // já existente
 
 namespace Hypesoft.Domain.Repositories
 {
