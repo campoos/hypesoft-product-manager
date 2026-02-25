@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Hypesoft.Domain.Entities;
 using Hypesoft.Domain.Repositories;
+using Hypesoft.Infrastructure.Data;
 using MongoDB.Driver;
 
 namespace Hypesoft.Infrastructure.Repositories
@@ -10,9 +11,9 @@ namespace Hypesoft.Infrastructure.Repositories
     {
         private readonly IMongoCollection<Produto> _collection;
 
-        public ProdutoRepository(IMongoDatabase database)
+        public ProdutoRepository(MongoContext context)
         {
-            _collection = database.GetCollection<Produto>("Produtos");
+            _collection = context.Database.GetCollection<Produto>("Produtos");
         }
 
         public async Task<List<Produto>> GetAllAsync()

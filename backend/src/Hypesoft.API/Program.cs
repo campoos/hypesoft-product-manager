@@ -1,25 +1,26 @@
-using Hypesoft.Domain.Repositories;
-using Hypesoft.Infrastructure.Repositories;
+using Hypesoft.Infrastructure.Configurations;
 using Hypesoft.Application.Handlers.Produtos;
 using MediatR;
-using MongoDB.Driver;
-
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var mongoClient = new MongoClient(builder.Configuration.GetConnectionString("MongoDb"));
-var database = mongoClient.GetDatabase("HypesoftDb"); 
+var mongoConnection = builder.Configuration.GetConnectionString("MongoDb");
+if (mongoConnection == null)
+{
+    throw new InvalidOperationException("Connection string 'MongoDb' is missing.");
+}
 
-builder.Services.AddSingleton(database); 
-builder.Services.AddScoped<IProdutoRepository, ProdutoRepository>();
+builder.Services.AddInfrastructure(mongoConnection, "HypesoftDb");
+
+// Registra o MediatR para os handlers
 builder.Services.AddMediatR(typeof(CreateProdutoHandler).Assembly);
 
+// Controllers
 builder.Services.AddControllers();
 
 var app = builder.Build();
+
+// Map Controllers
 app.MapControllers();
+
 app.Run();
