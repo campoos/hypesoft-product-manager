@@ -34,5 +34,13 @@ namespace Hypesoft.API.Controllers
             var resultado = await _mediator.Send(query);
             return Ok(resultado);
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProdutoResponseDto>> GetById([FromRoute] string id)
+        {
+            var query = new GetByIdProdutosQuery(id);
+            var resultado = await _mediator.Send(query);
+            return Ok(resultado);
+        }
     }
 }
