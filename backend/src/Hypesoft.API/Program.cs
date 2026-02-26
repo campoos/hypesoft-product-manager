@@ -1,5 +1,6 @@
 using Hypesoft.Infrastructure.Configurations;
 using Hypesoft.Application.Handlers.Produtos;
+using Hypesoft.API.Middlewares;
 using MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,6 +21,7 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionMiddleware>();
 // Map Controllers
 app.MapControllers();
 
