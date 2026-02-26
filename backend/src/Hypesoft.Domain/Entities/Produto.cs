@@ -7,7 +7,12 @@ namespace Hypesoft.Domain.Entities
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; }
+        public string Id { get; private set; }
+
+        public Produto()
+        {
+            Id = ObjectId.GenerateNewId().ToString();
+        }
         
         private string _nome = string.Empty;
         public string Nome
