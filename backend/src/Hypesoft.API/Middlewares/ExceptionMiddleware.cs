@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text.Json;
 using Hypesoft.Domain.Exceptions;
+using Hypesoft.Application.Exceptions;
 
 namespace Hypesoft.API.Middlewares
 {
@@ -22,6 +23,10 @@ namespace Hypesoft.API.Middlewares
             catch (DomainValidationException ex)
             {
                 await HandleException(context, ex.Message, HttpStatusCode.BadRequest);
+            }
+            catch (NotFoundException ex)
+            {
+                await HandleException(context, ex.Message, HttpStatusCode.NotFound);
             }
             catch (Exception)
             {
