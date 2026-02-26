@@ -1,5 +1,6 @@
 
 using Hypesoft.Domain.Repositories;
+using Hypesoft.Application.Exceptions;
 using Hypesoft.Application.DTOs.Produtos;
 using MediatR;
 using System.Threading;
@@ -23,7 +24,7 @@ namespace Hypesoft.Application.Handlers.Produtos
             var produto = await _produtoRepository.GetByIdAsync(request.Id);
 
             if (produto == null)
-                throw new KeyNotFoundException("Produto não encontrado");
+                throw new NotFoundException("Produto não encontrado");
 
             return new ProdutoResponseDto
             {
