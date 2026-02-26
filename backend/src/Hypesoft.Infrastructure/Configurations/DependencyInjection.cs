@@ -13,6 +13,7 @@ namespace Hypesoft.Infrastructure.Configurations
             services.AddSingleton(mongoContext);
 
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<ICategoriaRepository, CategoriaRepository>();
 
             return services;
         }
