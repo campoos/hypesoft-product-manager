@@ -3,6 +3,7 @@ using Hypesoft.Application.DTOs.Produtos;
 using Hypesoft.Application.Queries.Produtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -38,6 +39,9 @@ namespace Hypesoft.API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<ProdutoResponseDto>> GetById([FromRoute] string id)
         {
+            if (!ObjectId.TryParse(id, out _))
+                return BadRequest(new { error = "formato de ID inválido" });
+
             var query = new GetByIdProdutosQuery(id);
             var resultado = await _mediator.Send(query);
             return Ok(resultado);
