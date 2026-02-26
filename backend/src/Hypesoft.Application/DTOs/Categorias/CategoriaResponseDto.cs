@@ -1,4 +1,4 @@
-namespace Hypesoft.Application.DTOs.Produtos
+namespace Hypesoft.Application.DTOs.Categorias
 {
     public class CategoriaResponseDto
     {
