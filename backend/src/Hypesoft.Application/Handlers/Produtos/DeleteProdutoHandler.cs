@@ -25,7 +25,7 @@ namespace Hypesoft.Application.Handlers.Produtos
 
             await _produtoRepository.DeleteAsync(request.Id);
 
-            return Unit.Value; // MediatR espera Unit quando não retorna nada
+            return Unit.Value;
         }
     }
 }
