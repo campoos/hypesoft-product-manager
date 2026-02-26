@@ -35,7 +35,7 @@ namespace Hypesoft.Application.Handlers.Produtos
 
             var criado = await _produtoRepository.CreateAsync(produto);
 
-            return _mapper.Map<ProdutoResponseDto>(produto);
+            return _mapper.Map<ProdutoResponseDto>(criado);
         }
     }
 }

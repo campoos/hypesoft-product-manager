@@ -27,10 +27,7 @@ namespace Hypesoft.Application.Handlers.Produtos
         {
             var produtos = await _produtoRepository.GetAllAsync();
 
-            return produtos.Select(produto => new ProdutoResponseDto
-            {
-                _mapper.Map<ProdutoResponseDto>(produto)
-            }).ToList();
+            return _mapper.Map<List<ProdutoResponseDto>>(produtos);
         }
     }
 }
