@@ -8,16 +8,19 @@ using System.Threading.Tasks;
 using Hypesoft.Application.Queries.Produtos;
 using System.Collections.Generic;
 using System.Linq;
+using AutoMapper;
 
 namespace Hypesoft.Application.Handlers.Produtos
 {
     public class GetAllProdutoHandler : IRequestHandler<GetAllProdutosQuery, List<ProdutoResponseDto>>
     {
         private readonly IProdutoRepository _produtoRepository;
+        private readonly IMapper _mapper;
 
-        public GetAllProdutoHandler(IProdutoRepository produtoRepository)
+        public GetAllProdutoHandler(IProdutoRepository produtoRepository, IMapper mapper)
         {
             _produtoRepository = produtoRepository;
+            _mapper = mapper;
         }
 
         public async Task<List<ProdutoResponseDto>> Handle(GetAllProdutosQuery request, CancellationToken cancellationToken)
@@ -26,12 +29,7 @@ namespace Hypesoft.Application.Handlers.Produtos
 
             return produtos.Select(produto => new ProdutoResponseDto
             {
-                Id = produto.Id,
-                Nome = produto.Nome,
-                Descricao = produto.Descricao,
-                Preco = produto.Preco,
-                CategoriaId = produto.CategoriaId,
-                QuantidadeEmEstoque = produto.QuantidadeEmEstoque
+                _mapper.Map<ProdutoResponseDto>(produto)
             }).ToList();
         }
     }

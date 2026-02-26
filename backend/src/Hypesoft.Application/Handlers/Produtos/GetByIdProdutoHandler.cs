@@ -7,16 +7,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using Hypesoft.Application.Queries.Produtos;
 using System.Collections.Generic;
+using AutoMapper;
 
 namespace Hypesoft.Application.Handlers.Produtos
 {
    public class GetByIdProdutoHandler : IRequestHandler<GetByIdProdutosQuery, ProdutoResponseDto>
     {
         private readonly IProdutoRepository _produtoRepository;
+        private readonly IMapper _mapper;
 
-        public GetByIdProdutoHandler(IProdutoRepository produtoRepository)
+        public GetByIdProdutoHandler(IProdutoRepository produtoRepository, IMapper mapper)
         {
             _produtoRepository = produtoRepository;
+            _mapper = mapper;
         }
 
         public async Task<ProdutoResponseDto> Handle(GetByIdProdutosQuery request, CancellationToken cancellationToken)
@@ -26,15 +29,7 @@ namespace Hypesoft.Application.Handlers.Produtos
             if (produto == null)
                 throw new NotFoundException("Produto não encontrado");
 
-            return new ProdutoResponseDto
-            {
-                Id = produto.Id,
-                Nome = produto.Nome,
-                Descricao = produto.Descricao,
-                Preco = produto.Preco,
-                CategoriaId = produto.CategoriaId,
-                QuantidadeEmEstoque = produto.QuantidadeEmEstoque
-            };
+            return _mapper.Map<ProdutoResponseDto>(produto);
         }
     }
 }

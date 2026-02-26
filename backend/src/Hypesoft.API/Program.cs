@@ -16,6 +16,8 @@ builder.Services.AddInfrastructure(mongoConnection, "HypesoftDb");
 // Registra o MediatR para os handlers
 builder.Services.AddMediatR(typeof(CreateProdutoHandler).Assembly);
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 // Controllers
 builder.Services.AddControllers();
 

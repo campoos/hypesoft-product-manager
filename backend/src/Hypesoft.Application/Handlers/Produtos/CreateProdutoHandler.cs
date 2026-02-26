@@ -7,16 +7,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using System;
 using System.Data.Common;
+using AutoMapper;
 
 namespace Hypesoft.Application.Handlers.Produtos
 {
     public class CreateProdutoHandler : IRequestHandler<CreateProdutoCommand, ProdutoResponseDto>
     {
         private readonly IProdutoRepository _produtoRepository;
+        private readonly IMapper _mapper;
 
-        public CreateProdutoHandler(IProdutoRepository produtoRepository)
+        public CreateProdutoHandler(IProdutoRepository produtoRepository, IMapper mapper)
         {
             _produtoRepository = produtoRepository;
+            _mapper = mapper;
         }
 
         public async Task<ProdutoResponseDto> Handle(CreateProdutoCommand request, CancellationToken cancellationToken)
@@ -32,15 +35,7 @@ namespace Hypesoft.Application.Handlers.Produtos
 
             var criado = await _produtoRepository.CreateAsync(produto);
 
-            return new ProdutoResponseDto
-            {
-                Id = criado.Id,
-                Nome = criado.Nome,
-                Descricao = criado.Descricao,
-                Preco = criado.Preco,
-                CategoriaId = criado.CategoriaId,
-                QuantidadeEmEstoque = criado.QuantidadeEmEstoque
-            };
+            return _mapper.Map<ProdutoResponseDto>(produto);
         }
     }
 }
