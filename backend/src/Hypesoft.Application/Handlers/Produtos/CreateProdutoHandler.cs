@@ -34,7 +34,7 @@ namespace Hypesoft.Application.Handlers.Produtos
 
             return new ProdutoResponseDto
             {
-                Id = criado.Id ?? throw new InvalidOperationException("MongoDB não gerou o Id do produto."),
+                Id = criado.Id,
                 Nome = criado.Nome,
                 Descricao = criado.Descricao,
                 Preco = criado.Preco,
