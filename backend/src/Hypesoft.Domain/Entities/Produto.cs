@@ -1,4 +1,5 @@
 using System;
+using Hypesoft.Domain.Exceptions;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 namespace Hypesoft.Domain.Entities
@@ -21,7 +22,7 @@ namespace Hypesoft.Domain.Entities
             set
             {
                 if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
-                    throw new Exception("Nome do produto deve ter ao mínimo 3 caracteres.");
+                    throw new DomainValidationException("Nome do produto deve ter ao mínimo 3 caracteres.");
                 
                 _nome = value;
             }
@@ -34,8 +35,8 @@ namespace Hypesoft.Domain.Entities
             set
             {
                 if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
-                    throw new Exception("Descrição no mínimo deve ter 3 caracteres.");
-
+                    throw new DomainValidationException("Descrição no mínimo deve ter 3 caracteres.");
+                
                 _descricao = value;
             }
         }
@@ -47,12 +48,23 @@ namespace Hypesoft.Domain.Entities
             set
             {
                 if (value < 0)
-                    throw new Exception("Preço não pode ser negativo!");
+                    throw new DomainValidationException("Preço não pode ser negativo!");
 
                 _preco = value;
             }
         }
-        public string CategoriaId { get; set; } = string.Empty;
+        private string _categoriaId = string.Empty;
+        public string CategoriaId
+        {
+            get => _categoriaId;
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                    throw new DomainValidationException("Produto deve ter uma categoria.");
+
+                _categoriaId = value;
+            }
+        }
 
         private int _quantidadeEmEstoque;
         public int QuantidadeEmEstoque
@@ -61,7 +73,7 @@ namespace Hypesoft.Domain.Entities
             set
             {
                 if (value < 0)
-                    throw new Exception("Quantidade deve ser um número igual ou maior a 0");
+                    throw new DomainValidationException("Quantidade deve ser um número igual ou maior a 0");
             
                 _quantidadeEmEstoque = value;
             }
