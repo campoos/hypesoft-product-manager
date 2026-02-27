@@ -30,6 +30,20 @@ namespace Hypesoft.Application.Handlers.Produtos
         {
             var produtos = await _produtoRepository.GetAllAsync();
 
+            if (!string.IsNullOrEmpty(request.Nome))
+            {
+                produtos = produtos
+                    .Where(p => p.Nome.ToLower().Contains(request.Nome.ToLower()))
+                    .ToList();
+            }
+
+            if (!string.IsNullOrEmpty(request.CategoriaId))
+            {
+                produtos = produtos
+                    .Where(p => p.CategoriaId == request.CategoriaId)
+                    .ToList();
+            }
+
             var response = new List<ProdutoResponseDto>();
 
             foreach (var produto in produtos)
