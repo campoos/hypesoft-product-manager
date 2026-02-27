@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System;
 using System.Data.Common;
 using AutoMapper;
+using Hypesoft.Application.DTOs.Categorias;
 
 namespace Hypesoft.Application.Handlers.Produtos
 {
@@ -44,7 +45,15 @@ namespace Hypesoft.Application.Handlers.Produtos
 
             var criado = await _produtoRepository.CreateAsync(produto);
 
-            return _mapper.Map<ProdutoResponseDto>(criado);
+            var response = _mapper.Map<ProdutoResponseDto>(criado);
+
+            response.Categoria = new CategoriaResumoDto
+            {
+                Id = categoria.Id,
+                Nome = categoria.Nome
+            };
+
+            return response;
         }
     }
 }
