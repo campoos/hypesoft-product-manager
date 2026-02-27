@@ -37,5 +37,16 @@ namespace Hypesoft.API.Controllers
             var resultado = await _mediator.Send(query);
             return Ok(resultado);
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CategoriaResponseDto>> GetById([FromRoute] string id)
+        {
+            if (!ObjectId.TryParse(id, out _))
+                return BadRequest(new { error = "formato de ID inválido" });
+
+            var query = new GetByIdCategoriasQuery(id);
+            var resultado = await _mediator.Send(query);
+            return Ok(resultado);
+        }
     }
 }
