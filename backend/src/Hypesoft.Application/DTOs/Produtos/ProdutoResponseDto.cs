@@ -9,6 +9,6 @@ namespace Hypesoft.Application.DTOs.Produtos
         public string Descricao { get; set; } = null!;
         public decimal Preco { get; set; }
         public int QuantidadeEmEstoque { get; set; }
-        public CategoriaResumoDto Categoria { get; set; } = null!;
+        public CategoriaResumoDto? Categoria { get; set; }
     }
 }

@@ -9,6 +9,7 @@ using Hypesoft.Application.Queries.Produtos;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+using Hypesoft.Application.DTOs.Categorias;
 
 namespace Hypesoft.Application.Handlers.Produtos
 {
@@ -29,7 +30,27 @@ namespace Hypesoft.Application.Handlers.Produtos
         {
             var produtos = await _produtoRepository.GetAllAsync();
 
-            return _mapper.Map<List<ProdutoResponseDto>>(produtos);
+            var response = new List<ProdutoResponseDto>();
+
+            foreach (var produto in produtos)
+            {
+                var categoria = await _categoriaRepository.GetByIdAsync(produto.CategoriaId);
+
+                var dto = _mapper.Map<ProdutoResponseDto>(produto);
+
+                if(categoria == null)
+                    dto.Categoria = null;
+                else 
+                    dto.Categoria = new CategoriaResumoDto
+                    {
+                        Id = categoria.Id,
+                        Nome = categoria.Nome  
+                    };
+
+                response.Add(dto);
+            }
+
+            return response;
         }
     }
 }
