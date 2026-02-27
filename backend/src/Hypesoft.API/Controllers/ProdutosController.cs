@@ -23,6 +23,9 @@ namespace Hypesoft.API.Controllers
         [HttpPost]
         public async Task<ActionResult<ProdutoResponseDto>> Create([FromBody] ProdutoRequestDto produtoRequest)
         {
+            if (!ObjectId.TryParse(produtoRequest.CategoriaId, out _))
+                return BadRequest(new { error = "formato de categoriaId inválido" });
+
             var command = new CreateProdutoCommand(produtoRequest);
             var resultado = await _mediator.Send(command);
             return Ok(resultado);
