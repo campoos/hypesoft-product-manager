@@ -59,5 +59,17 @@ namespace Hypesoft.API.Controllers
             var resultado = await _mediator.Send(command);
             return Ok(resultado);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete([FromRoute] string id)
+        {
+            if (!ObjectId.TryParse(id, out _))
+                return BadRequest(new { error = "formato de ID inválido" });
+
+            var command = new DeleteCategoriaCommand(id);
+            await _mediator.Send(command);
+
+            return NoContent();
+        }
     }
 }
