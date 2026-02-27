@@ -4,6 +4,7 @@ using Hypesoft.Application.Commands.Produtos;
 using Hypesoft.Application.DTOs.Produtos;
 using MediatR;
 using System.Threading;
+using Hypesoft.Application.Exceptions;
 using System.Threading.Tasks;
 using System;
 using System.Data.Common;
@@ -26,6 +27,12 @@ namespace Hypesoft.Application.Handlers.Produtos
 
         public async Task<ProdutoResponseDto> Handle(CreateProdutoCommand request, CancellationToken cancellationToken)
         {
+
+            var categoria = await _categoriaRepository.GetByIdAsync(request.Produto.CategoriaId);
+
+            if (categoria == null)
+                throw new NotFoundException("Categoria não encontrada");
+            
             var produto = new Produto
             {
                 Nome = request.Produto.Nome,
