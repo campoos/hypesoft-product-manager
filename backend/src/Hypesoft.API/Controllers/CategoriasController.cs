@@ -48,5 +48,16 @@ namespace Hypesoft.API.Controllers
             var resultado = await _mediator.Send(query);
             return Ok(resultado);
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<CategoriaResponseDto>> Update([FromRoute] string id, [FromBody] CategoriaRequestDto categoriaRequest)
+        {
+            if (!ObjectId.TryParse(id, out _))
+                return BadRequest(new { error = "formato de ID inválido" });
+
+            var command = new UpdateCategoriaCommand(categoriaRequest, id);
+            var resultado = await _mediator.Send(command);
+            return Ok(resultado);
+        }
     }
 }
