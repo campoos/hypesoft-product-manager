@@ -6,6 +6,7 @@ namespace Hypesoft.Application.Queries.Produtos
 {
     public class GetAllProdutosQuery : IRequest<List<ProdutoResponseDto>>
     {
-
+        public string? Nome { get; set; }
+        public string? CategoriaId { get; set; }
     }
 }
