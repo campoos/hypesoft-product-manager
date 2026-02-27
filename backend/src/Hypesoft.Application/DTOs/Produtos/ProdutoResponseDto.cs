@@ -1,3 +1,5 @@
+using Hypesoft.Application.DTOs.Categorias;
+
 namespace Hypesoft.Application.DTOs.Produtos
 {
     public class ProdutoResponseDto
@@ -6,7 +8,7 @@ namespace Hypesoft.Application.DTOs.Produtos
         public string Nome { get; set; } = null!;
         public string Descricao { get; set; } = null!;
         public decimal Preco { get; set; }
-        public string CategoriaId { get; set; } = null!;
         public int QuantidadeEmEstoque { get; set; }
+        public CategoriaResumoDto Categoria { get; set; } = null!;
     }
 }
