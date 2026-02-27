@@ -14,11 +14,13 @@ namespace Hypesoft.Application.Handlers.Produtos
    public class GetByIdProdutoHandler : IRequestHandler<GetByIdProdutosQuery, ProdutoResponseDto>
     {
         private readonly IProdutoRepository _produtoRepository;
+        private readonly ICategoriaRepository _categoriaRepository;
         private readonly IMapper _mapper;
 
-        public GetByIdProdutoHandler(IProdutoRepository produtoRepository, IMapper mapper)
+        public GetByIdProdutoHandler(IProdutoRepository produtoRepository, ICategoriaRepository categoriaRepository, IMapper mapper)
         {
             _produtoRepository = produtoRepository;
+            _categoriaRepository = categoriaRepository;
             _mapper = mapper;
         }
 
