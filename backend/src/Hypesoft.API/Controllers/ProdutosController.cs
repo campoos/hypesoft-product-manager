@@ -32,9 +32,24 @@ namespace Hypesoft.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<ProdutoResponseDto>>> GetAll()
+        public async Task<ActionResult<List<ProdutoResponseDto>>> GetAll(
+            [FromQuery] string? nome,
+            [FromQuery] string? categoriaId
+        )
         {
-            var query = new GetAllProdutosQuery();
+            if (!string.IsNullOrEmpty(categoriaId))
+            {
+                if (!ObjectId.TryParse(categoriaId, out _))
+                    return BadRequest(new { error = "formato de ID inválido" });
+            }
+
+
+            var query = new GetAllProdutosQuery
+            {
+                Nome = nome,
+                CategoriaId = categoriaId
+            };
+
             var resultado = await _mediator.Send(query);
             return Ok(resultado);
         }
