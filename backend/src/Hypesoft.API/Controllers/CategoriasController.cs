@@ -1,5 +1,7 @@
 using Hypesoft.Application.Commands.Categorias;
 using Hypesoft.Application.DTOs.Categorias;
+using Hypesoft.Application.Queries.Categorias;
+
 //using Hypesoft.Application.Queries.Produtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -25,6 +27,14 @@ namespace Hypesoft.API.Controllers
         {
             var command = new CreateCategoriaCommand(categoriaRequest);
             var resultado = await _mediator.Send(command);
+            return Ok(resultado);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<CategoriaResponseDto>>> GetAll()
+        {
+            var query = new GetAllCategoriasQuery();
+            var resultado = await _mediator.Send(query);
             return Ok(resultado);
         }
     }
