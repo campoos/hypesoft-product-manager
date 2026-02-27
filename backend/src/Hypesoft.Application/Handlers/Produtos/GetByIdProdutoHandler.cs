@@ -2,6 +2,7 @@
 using Hypesoft.Domain.Repositories;
 using Hypesoft.Application.Exceptions;
 using Hypesoft.Application.DTOs.Produtos;
+using Hypesoft.Application.DTOs.Categorias;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
@@ -31,7 +32,20 @@ namespace Hypesoft.Application.Handlers.Produtos
             if (produto == null)
                 throw new NotFoundException("Produto não encontrado");
 
-            return _mapper.Map<ProdutoResponseDto>(produto);
+            var dto = _mapper.Map<ProdutoResponseDto>(produto);
+
+            var categoria = await _categoriaRepository.GetByIdAsync(produto.CategoriaId);
+
+            if(categoria == null)
+                dto.Categoria = null;
+            else
+                dto.Categoria = new CategoriaResumoDto
+                {
+                    Id = categoria.Id,
+                    Nome = categoria.Nome  
+                };
+
+            return dto;
         }
     }
 }
