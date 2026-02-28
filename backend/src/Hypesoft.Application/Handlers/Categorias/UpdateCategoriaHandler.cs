@@ -26,7 +26,7 @@ namespace Hypesoft.Application.Handlers.Categorias
             var categoriaEncontrada = await _categoriaRepository.GetByIdAsync(request.Id);
 
             if (categoriaEncontrada == null)
-                throw new NotFoundException("Categoria não encontrada");
+                throw new NotFoundException("Categoria não encontrada.");
 
             categoriaEncontrada.Nome = request.Categoria.Nome;
 

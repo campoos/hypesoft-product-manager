@@ -30,7 +30,7 @@ namespace Hypesoft.Application.Handlers.Produtos
             var categoria = await _categoriaRepository.GetByIdAsync(request.Produto.CategoriaId);
 
             if (categoria == null)
-                throw new NotFoundException("Categoria não encontrada");
+                throw new NotFoundException("Categoria não encontrada.");
             
             var produto = new Produto
             {

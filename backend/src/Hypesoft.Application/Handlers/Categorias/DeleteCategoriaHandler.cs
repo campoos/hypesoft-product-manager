@@ -21,7 +21,7 @@ namespace Hypesoft.Application.Handlers.Categorias
             var categoria = await _categoriaRepository.GetByIdAsync(request.Id);
 
             if (categoria == null)
-                throw new NotFoundException("Categoria não encontrada");
+                throw new NotFoundException("Categoria não encontrada.");
 
             await _categoriaRepository.DeleteAsync(request.Id);
 

@@ -29,7 +29,7 @@ namespace Hypesoft.Application.Handlers.Produtos
             var produto = await _produtoRepository.GetByIdAsync(request.Id);
 
             if (produto == null)
-                throw new NotFoundException("Produto não encontrado");
+                throw new NotFoundException("Produto não encontrado.");
 
             var dto = _mapper.Map<ProdutoResponseDto>(produto);
 
