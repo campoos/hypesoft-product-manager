@@ -22,7 +22,7 @@ namespace Hypesoft.Domain.Entities
             set
             {
                 if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
-                    throw new DomainValidationException("Nome da categoria deve ter ao mínimo 3 caracteres.");
+                    throw new DomainValidationException("Nome da categoria deve ter pelo menos 3 caracteres.");
                 
                 _nome = value;
             }

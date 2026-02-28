@@ -22,7 +22,7 @@ namespace Hypesoft.Domain.Entities
             set
             {
                 if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
-                    throw new DomainValidationException("Nome do produto deve ter ao mínimo 3 caracteres.");
+                    throw new DomainValidationException("Nome do produto deve ter pelo menos 3 caracteres.");
                 
                 _nome = value;
             }
@@ -35,7 +35,7 @@ namespace Hypesoft.Domain.Entities
             set
             {
                 if (string.IsNullOrWhiteSpace(value) || value.Length < 3)
-                    throw new DomainValidationException("Descrição no mínimo deve ter 3 caracteres.");
+                    throw new DomainValidationException("Descrição no mínimo deve ter pelo menos 3 caracteres.");
                 
                 _descricao = value;
             }
@@ -48,7 +48,7 @@ namespace Hypesoft.Domain.Entities
             set
             {
                 if (value < 0)
-                    throw new DomainValidationException("Preço não pode ser negativo!");
+                    throw new DomainValidationException("Preço do produto não pode ser negativo.");
 
                 _preco = value;
             }
@@ -73,7 +73,7 @@ namespace Hypesoft.Domain.Entities
             set
             {
                 if (value < 0)
-                    throw new DomainValidationException("Quantidade deve ser um número igual ou maior a 0");
+                    throw new DomainValidationException("Quantidade em estoque deve ser zero ou maior.");
             
                 _quantidadeEmEstoque = value;
             }
