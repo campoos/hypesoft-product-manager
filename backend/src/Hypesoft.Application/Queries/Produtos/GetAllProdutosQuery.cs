@@ -8,5 +8,6 @@ namespace Hypesoft.Application.Queries.Produtos
     {
         public string? Nome { get; set; }
         public string? CategoriaId { get; set; }
+        public int? EstoqueMax { get; set; }
     }
 }
