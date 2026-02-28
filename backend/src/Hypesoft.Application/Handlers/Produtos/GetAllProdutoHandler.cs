@@ -29,23 +29,22 @@ namespace Hypesoft.Application.Handlers.Produtos
         {
             var produtos = await _produtoRepository.GetAllAsync();
 
+            var query = produtos.AsQueryable();
+
             if (!string.IsNullOrEmpty(request.Nome))
-            {
-                produtos = produtos
-                    .Where(p => p.Nome.ToLower().Contains(request.Nome.ToLower()))
-                    .ToList();
-            }
+                query = query.Where(p => p.Nome.ToLower().Contains(request.Nome.ToLower()));
 
             if (!string.IsNullOrEmpty(request.CategoriaId))
-            {
-                produtos = produtos
-                    .Where(p => p.CategoriaId == request.CategoriaId)
-                    .ToList();
-            }
+                query = query.Where(p => p.CategoriaId == request.CategoriaId);
+
+            if (request.EstoqueMax.HasValue)
+                query = query.Where(p => p.QuantidadeEmEstoque <= request.EstoqueMax.Value);
+
+            var filteredProdutos = query.ToList();
 
             var response = new List<ProdutoResponseDto>();
 
-            foreach (var produto in produtos)
+            foreach (var produto in filteredProdutos)
             {
                 var categoria = await _categoriaRepository.GetByIdAsync(produto.CategoriaId);
 
