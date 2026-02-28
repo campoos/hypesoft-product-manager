@@ -22,7 +22,7 @@ namespace Hypesoft.API.Controllers
         public async Task<ActionResult<ProdutoResponseDto>> Create([FromBody] ProdutoRequestDto produtoRequest)
         {
             if (!ObjectId.TryParse(produtoRequest.CategoriaId, out _))
-                return BadRequest(new { error = "formato de categoriaId inválido" });
+                return BadRequest(new { error = "formato de categoriaId inválido." });
 
             var command = new CreateProdutoCommand(produtoRequest);
             var resultado = await _mediator.Send(command);
@@ -39,11 +39,11 @@ namespace Hypesoft.API.Controllers
             if (!string.IsNullOrEmpty(categoriaId))
             {
                 if (!ObjectId.TryParse(categoriaId, out _))
-                    return BadRequest(new { error = "formato de ID inválido" });
+                    return BadRequest(new { error = "formato de ID inválido." });
             }
 
             if (estoqueMax.HasValue && estoqueMax < 0)
-                return BadRequest(new { error = "EstoqueMax não pode ser negativo" });
+                return BadRequest(new { error = "EstoqueMax não pode ser negativo." });
 
 
             var query = new GetAllProdutosQuery
@@ -61,7 +61,7 @@ namespace Hypesoft.API.Controllers
         public async Task<ActionResult<ProdutoResponseDto>> GetById([FromRoute] string id)
         {
             if (!ObjectId.TryParse(id, out _))
-                return BadRequest(new { error = "formato de ID inválido" });
+                return BadRequest(new { error = "formato de ID inválido." });
 
             var query = new GetByIdProdutosQuery(id);
             var resultado = await _mediator.Send(query);
@@ -72,7 +72,7 @@ namespace Hypesoft.API.Controllers
         public async Task<ActionResult<ProdutoResponseDto>> Update([FromRoute] string id, [FromBody] ProdutoRequestDto produtoRequest)
         {
             if (!ObjectId.TryParse(id, out _))
-                return BadRequest(new { error = "formato de ID inválido" });
+                return BadRequest(new { error = "formato de ID inválido." });
 
             var command = new UpdateProdutoCommand(produtoRequest, id);
             var resultado = await _mediator.Send(command);
@@ -83,7 +83,7 @@ namespace Hypesoft.API.Controllers
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
             if (!ObjectId.TryParse(id, out _))
-                return BadRequest(new { error = "formato de ID inválido" });
+                return BadRequest(new { error = "formato de ID inválido." });
 
             var command = new DeleteProdutoCommand(id);
             await _mediator.Send(command);
