@@ -27,7 +27,7 @@ export interface ProductResponse {
 
 // GET todos os produtos
 export const fetchProducts = async (): Promise<ProductResponse[]> => {
-  const { data } = await api.get('/products');
+  const { data } = await api.get('/produtos');
   return data;
 };
 
@@ -37,7 +37,7 @@ export const fetchProductsFiltered = async (
   categoriaId?: string,
   minEstoque?: number
 ): Promise<ProductResponse[]> => {
-  const { data } = await api.get('/products', {
+  const { data } = await api.get('/produtos', {
     params: {
       nome,
       categoriaId,
@@ -49,23 +49,23 @@ export const fetchProductsFiltered = async (
 
 // GET produto por ID
 export const fetchProductById = async (id: string): Promise<ProductResponse> => {
-  const { data } = await api.get(`/products/${id}`);
+  const { data } = await api.get(`/produtos/${id}`);
   return data;
 };
 
 // POST criar produto
 export const createProduct = async (product: ProductRequest): Promise<ProductResponse> => {
-  const { data } = await api.post('/products', product);
+  const { data } = await api.post('/produtos', product);
   return data;
 };
 
 // PUT atualizar produto
 export const updateProduct = async (id: string, product: ProductRequest): Promise<ProductResponse> => {
-  const { data } = await api.put(`/products/${id}`, product);
+  const { data } = await api.put(`/produtos/${id}`, product);
   return data;
 };
 
 // DELETE produto
 export const deleteProduct = async (id: string): Promise<void> => {
-  await api.delete(`/products/${id}`);
+  await api.delete(`/produtos/${id}`);
 };
