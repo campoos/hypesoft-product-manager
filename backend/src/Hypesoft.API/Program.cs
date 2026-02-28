@@ -2,6 +2,7 @@ using Hypesoft.Infrastructure.Configurations;
 using Hypesoft.Application.Handlers.Produtos;
 using Hypesoft.API.Middlewares;
 using MediatR;
+using Hypesoft.Infrastructure.Data.Seed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,10 @@ app.UseMiddleware<ExceptionMiddleware>();
 // Map Controllers
 app.MapControllers();
 
-
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = scope.ServiceProvider.GetRequiredService<MongoSeeder>();
+    await seeder.SeedAsync();
+}
 
 app.Run();

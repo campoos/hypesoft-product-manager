@@ -4,7 +4,7 @@ using MongoDB.Driver;
 
 using Hypesoft.Domain.Entities;
 
-namespace Hypesoft.Infrastructure.Data
+namespace Hypesoft.Infrastructure.Data.Seed
 {
     public class MongoSeeder
     {

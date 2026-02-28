@@ -1,5 +1,6 @@
 using Hypesoft.Domain.Repositories;
 using Hypesoft.Infrastructure.Data;
+using Hypesoft.Infrastructure.Data.Seed;
 using Hypesoft.Infrastructure.Repositories;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,7 +15,7 @@ namespace Hypesoft.Infrastructure.Configurations
 
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
-            
+
             services.AddScoped<MongoSeeder>();
 
             return services;
