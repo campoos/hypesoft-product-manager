@@ -32,7 +32,8 @@ namespace Hypesoft.API.Controllers
         [HttpGet]
         public async Task<ActionResult<List<ProdutoResponseDto>>> GetAll(
             [FromQuery] string? nome,
-            [FromQuery] string? categoriaId
+            [FromQuery] string? categoriaId,
+            [FromQuery] int? estoqueMax
         )
         {
             if (!string.IsNullOrEmpty(categoriaId))
@@ -41,11 +42,15 @@ namespace Hypesoft.API.Controllers
                     return BadRequest(new { error = "formato de ID inválido" });
             }
 
+            if (estoqueMax.HasValue && estoqueMax < 0)
+                return BadRequest(new { error = "EstoqueMax não pode ser negativo" });
+
 
             var query = new GetAllProdutosQuery
             {
                 Nome = nome,
-                CategoriaId = categoriaId
+                CategoriaId = categoriaId,
+                EstoqueMax = estoqueMax,
             };
 
             var resultado = await _mediator.Send(query);
