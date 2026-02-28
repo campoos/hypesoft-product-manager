@@ -30,7 +30,7 @@ namespace Hypesoft.API.Middlewares
             }
             catch (Exception)
             {
-                await HandleException(context, "Erro interno no servidor", HttpStatusCode.InternalServerError);
+                await HandleException(context, "Erro interno no servidor.", HttpStatusCode.InternalServerError);
             }
         }
 
