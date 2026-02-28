@@ -7,7 +7,6 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using Hypesoft.Application.Queries.Produtos;
-using System.Collections.Generic;
 using AutoMapper;
 
 namespace Hypesoft.Application.Handlers.Produtos

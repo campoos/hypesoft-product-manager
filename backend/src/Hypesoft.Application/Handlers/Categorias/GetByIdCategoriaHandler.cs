@@ -6,7 +6,6 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using Hypesoft.Application.Queries.Categorias;
-using System.Collections.Generic;
 using AutoMapper;
 
 namespace Hypesoft.Application.Handlers.Categorias

@@ -1,4 +1,4 @@
-using Hypesoft.Domain.Entities;
+
 using Hypesoft.Domain.Repositories;
 using Hypesoft.Application.DTOs.Categorias;
 using MediatR;
@@ -7,7 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Hypesoft.Application.Queries.Categorias;
 using System.Collections.Generic;
-using System.Linq;
 using AutoMapper;
 
 namespace Hypesoft.Application.Handlers.Categorias

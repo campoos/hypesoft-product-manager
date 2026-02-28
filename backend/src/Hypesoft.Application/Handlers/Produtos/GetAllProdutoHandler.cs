@@ -1,8 +1,7 @@
-using Hypesoft.Domain.Entities;
+
 using Hypesoft.Domain.Repositories;
 using Hypesoft.Application.DTOs.Produtos;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Hypesoft.Application.Queries.Produtos;

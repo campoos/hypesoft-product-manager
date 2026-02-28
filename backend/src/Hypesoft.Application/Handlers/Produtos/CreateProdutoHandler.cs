@@ -6,8 +6,6 @@ using MediatR;
 using System.Threading;
 using Hypesoft.Application.Exceptions;
 using System.Threading.Tasks;
-using System;
-using System.Data.Common;
 using AutoMapper;
 using Hypesoft.Application.DTOs.Categorias;
 

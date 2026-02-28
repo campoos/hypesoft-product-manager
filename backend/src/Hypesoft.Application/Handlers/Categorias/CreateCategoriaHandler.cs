@@ -5,8 +5,6 @@ using Hypesoft.Application.DTOs.Categorias;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
-using System;
-using System.Data.Common;
 using AutoMapper;
 
 namespace Hypesoft.Application.Handlers.Categorias
