@@ -3,3 +3,11 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+:root {
+  --background: #FFFFFF; 
+  --background-hover: #F8F8F8; 
+  --primary: #5746D0; 
+  --secondary: #7A6EFD; 
+  --text: #0E0E10; 
+}
