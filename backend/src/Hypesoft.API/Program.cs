@@ -34,7 +34,19 @@ builder.Services.AddSwaggerGen(options =>
 // Controllers
 builder.Services.AddControllers();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000") // endereço do frontend
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
+
+app.UseCors("AllowFrontend");
 
 app.UseSwagger();
 app.UseSwaggerUI(options =>
@@ -43,9 +55,11 @@ app.UseSwaggerUI(options =>
 });
 
 app.UseMiddleware<ExceptionMiddleware>();
+
 // Map Controllers
 app.MapControllers();
 
+// Seed inicial
 using (var scope = app.Services.CreateScope())
 {
     var seeder = scope.ServiceProvider.GetRequiredService<MongoSeeder>();
