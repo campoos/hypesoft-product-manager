@@ -1,13 +1,9 @@
 using Hypesoft.Application.Commands.Categorias;
 using Hypesoft.Application.DTOs.Categorias;
 using Hypesoft.Application.Queries.Categorias;
-
-//using Hypesoft.Application.Queries.Produtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Hypesoft.API.Controllers
 {

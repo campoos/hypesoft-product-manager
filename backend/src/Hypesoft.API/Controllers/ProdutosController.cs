@@ -4,8 +4,6 @@ using Hypesoft.Application.Queries.Produtos;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Hypesoft.API.Controllers
 {

@@ -1,4 +1,4 @@
-using System;
+
 using Hypesoft.Domain.Exceptions;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
