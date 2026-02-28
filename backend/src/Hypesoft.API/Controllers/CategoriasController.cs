@@ -1,6 +1,7 @@
 using Hypesoft.Application.Commands.Categorias;
 using Hypesoft.Application.DTOs.Categorias;
 using Hypesoft.Application.Queries.Categorias;
+using Hypesoft.Domain.Exceptions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
@@ -38,7 +39,7 @@ namespace Hypesoft.API.Controllers
         public async Task<ActionResult<CategoriaResponseDto>> GetById([FromRoute] string id)
         {
             if (!ObjectId.TryParse(id, out _))
-                return BadRequest(new { error = "formato de ID inválido." });
+                throw new DomainValidationException("formato de ID inválido.");
 
             var query = new GetByIdCategoriasQuery(id);
             var resultado = await _mediator.Send(query);
@@ -49,7 +50,7 @@ namespace Hypesoft.API.Controllers
         public async Task<ActionResult<CategoriaResponseDto>> Update([FromRoute] string id, [FromBody] CategoriaRequestDto categoriaRequest)
         {
             if (!ObjectId.TryParse(id, out _))
-                return BadRequest(new { error = "formato de ID inválido." });
+                throw new DomainValidationException("formato de ID inválido.");
 
             var command = new UpdateCategoriaCommand(categoriaRequest, id);
             var resultado = await _mediator.Send(command);
@@ -60,7 +61,7 @@ namespace Hypesoft.API.Controllers
         public async Task<IActionResult> Delete([FromRoute] string id)
         {
             if (!ObjectId.TryParse(id, out _))
-                return BadRequest(new { error = "formato de ID inválido." });
+                throw new DomainValidationException("formato de ID inválido.");
 
             var command = new DeleteCategoriaCommand(id);
             await _mediator.Send(command);

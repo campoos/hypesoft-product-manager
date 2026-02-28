@@ -41,10 +41,17 @@ namespace Hypesoft.API.Middlewares
 
             var response = new
             {
-                error = message
+                message = message,
+                status_code = (int)statusCode,
+                timestamp = DateTime.UtcNow,
             };
 
-            await context.Response.WriteAsync(JsonSerializer.Serialize(response));
+            var json = JsonSerializer.Serialize(response, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+            });
+
+            await context.Response.WriteAsync(json);
         }
     }
 }
