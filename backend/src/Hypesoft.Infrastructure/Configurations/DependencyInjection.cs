@@ -14,6 +14,8 @@ namespace Hypesoft.Infrastructure.Configurations
 
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<ICategoriaRepository, CategoriaRepository>();
+            
+            services.AddScoped<MongoSeeder>();
 
             return services;
         }
