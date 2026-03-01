@@ -38,19 +38,19 @@ export default function Dashboard() {
         </aside>
         <main className='main-content'>
           <h1>Dashboard</h1>
-          <div className="cards-container">
+          <section className="cards-container">
             {cardsData.map((card, index) => (
-              <div className="card" key={index}>
+              <article className="card" key={index}>
                 <div className="card-header">
                   <div className="image-container">
                     <img src={card.icon} alt={card.title} />
                   </div>
                   <h2>{card.title}</h2>
                 </div>
-                <p>{card.value}</p>
-              </div>
+                <p className='card-value'>{card.value}</p>
+              </article>
             ))}
-          </div>
+          </section>
         </main>
       </div>
     </div>
