@@ -1,4 +1,8 @@
 import './Dashboard.css';
+import { useEffect, useState } from 'react';
+import { fetchDashboard } from '../../services/dashboards.ts';
+import type { DashboardResponse } from '../../services/dashboards.ts';
+
 import Header from '../../components/layout/header/Header.tsx'
 
 import iconStockValue from "../../assets/cards/coins.png"
@@ -7,10 +11,16 @@ import iconLowStock from "../../assets/cards/warning.png"
 
 export default function Dashboard() {
 
+  const [dashboardData, setDashboardData] = useState<DashboardResponse | null>(null);
+
+  useEffect(() => {
+    fetchDashboard().then(data => setDashboardData(data));
+  }, []);
+
   const cardsData = [
-    { icon: iconStockValue, title: "Valor Total do Estoque", value: "R$2.500,00" },
-    { icon: iconTotalProducts, title: "Total de Produtos", value: 350 },
-    { icon: iconLowStock, title: "Produtos com Estoque Baixo", value: 12 }
+    { icon: iconStockValue, title: "Valor Total do Estoque", value: dashboardData?.valorTotalEstoque ? `R$${dashboardData.valorTotalEstoque.toLocaleString()}` : "..." },
+    { icon: iconTotalProducts, title: "Total de Produtos", value: dashboardData?.totalProdutos ?? "..." },
+    { icon: iconLowStock, title: "Produtos com Estoque Baixo", value: dashboardData?.produtosComEstoqueBaixo ?? "..." }
   ];
 
   return (
