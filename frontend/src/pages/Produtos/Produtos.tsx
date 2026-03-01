@@ -6,11 +6,15 @@ import type { ProductResponse } from '../../services/products.ts';
 
 import Header from '../../components/layout/header/Header.tsx'
 import Sidebar from '../../components/layout/sidebar/Sidebar.tsx'
+import EditProductModal from '../../components/forms/editProduct/EditProductModal.tsx';
 import ProductModal from '../../components/forms/product/ProductModal.tsx';
 
 import createIcon from "../../assets/plus.png"
 
 export default function Produtos() {
+
+  const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);  
 
@@ -43,6 +47,14 @@ export default function Produtos() {
                 // opcional: recarregar lista depois
                 fetchProductsFiltered().then(setDataLowStock);
             }}
+        />
+        <EditProductModal
+          productId={selectedProductId}
+          isOpen={isEditModalOpen}
+          onClose={() => setIsEditModalOpen(false)}
+          onSuccess={() => {
+            fetchProductsFiltered().then(setDataLowStock);
+          }}
         />
         {isModalOpen && (
           <div className='dark-background'></div>
@@ -88,7 +100,14 @@ export default function Produtos() {
                   )}
 
                   {dataLowStock && dataLowStock.length > 0 && dataLowStock.map(produto => (
-                    <tr key={produto.id} className='linha-produto'>
+                    <tr
+                      key={produto.id}
+                      className='linha-produto'
+                      onClick={() => {
+                        setSelectedProductId(produto.id);
+                        setIsEditModalOpen(true);
+                      }}
+                    >
                       <td className='id-td'>{produto.id}</td>
                       <td className='nome-td'>{produto.nome}</td>
                       <td className='categoria-td'>{produto.categoria.nome}</td>
