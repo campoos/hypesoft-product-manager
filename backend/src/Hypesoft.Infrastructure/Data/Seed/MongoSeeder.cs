@@ -69,6 +69,25 @@ namespace Hypesoft.Infrastructure.Data.Seed
             produtos.Add(CriarProduto("Mochila", "Mochila resistente para uso diário", 130, categoria3.Id, 35));
             produtos.Add(CriarProduto("Carteira", "Carteira compacta", 60, categoria3.Id, 55));
 
+            // =========================
+            // ⚠️ PRODUTOS COM ESTOQUE BAIXO
+            // =========================
+
+            // ELETRÔNICOS
+            produtos.Add(CriarProduto("Fone Bluetooth", "Fone sem fio com cancelamento de ruído", 300, categoria1.Id, 5));
+            produtos.Add(CriarProduto("Webcam HD", "Ideal para reuniões e streaming", 220, categoria1.Id, 3));
+            produtos.Add(CriarProduto("SSD 480GB", "Armazenamento rápido", 350, categoria1.Id, 8));
+
+            // ROUPAS
+            produtos.Add(CriarProduto("Camiseta Estampada", "Camiseta com estampa moderna", 60, categoria2.Id, 7));
+            produtos.Add(CriarProduto("Jaqueta Jeans", "Jaqueta estilosa", 200, categoria2.Id, 4));
+            produtos.Add(CriarProduto("Regata Esportiva", "Leve e confortável", 45, categoria2.Id, 6));
+
+            // ACESSÓRIOS
+            produtos.Add(CriarProduto("Pulseira Fitness", "Monitoramento de atividades físicas", 150, categoria3.Id, 2));
+            produtos.Add(CriarProduto("Capa de Celular", "Proteção resistente", 30, categoria3.Id, 8));
+            produtos.Add(CriarProduto("Chaveiro", "Chaveiro personalizado", 20, categoria3.Id, 1));
+
             await _produtos.InsertManyAsync(produtos);
         }
 
