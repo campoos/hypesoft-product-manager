@@ -7,7 +7,7 @@ import type { ProductResponse } from '../../services/products.ts';
 import Header from '../../components/layout/header/Header.tsx'
 import Sidebar from '../../components/layout/sidebar/Sidebar.tsx'
 
-import createIcon from "../../assets/cards/coins.png"
+import createIcon from "../../assets/plus.png"
 
 export default function Produtos() {
 
