@@ -18,6 +18,9 @@ export default function Sidebar() {
                     <img src={dashboardicon} alt="dashboardsIcon"/>
                     <span>Dashboards</span>
                 </Link>
+
+                <div className="category-separator"></div>
+
                 <span>GERENCIAMENTO</span>
                 <Link to="/produtos" className={`sidebarItem ${location.pathname === "/produtos" ? "active" : ""}`}>
                     <img src={produtosdicon} alt="produtosIcon"/>

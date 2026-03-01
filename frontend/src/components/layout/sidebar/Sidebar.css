@@ -1,4 +1,85 @@
 .sidebar {
   width: 25rem;
   background-color: var(--background);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.sidebar nav {
+    height: 100%;
+}
+
+.sidebar nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    height: 100%;
+}
+
+.sidebar nav ul span {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text);
+    opacity: 0.5;
+
+    margin-bottom: 1rem;
+}
+
+.sidebar nav ul .sidebarItem {
+    color: var(--text);
+    text-decoration: none;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    height: 4rem;
+    padding-left: 1.5rem;
+    border-radius: 32px;
+
+    transition: background-color 0.2s ease-in-out, padding 0.1s ease-in-out;
+}
+
+.sidebar nav ul .sidebarItem:hover {
+    background-color: var(--background-hover);
+    padding-left: 2rem;
+}
+
+.sidebar nav ul .sidebarItem img {
+    height: 1.5rem;
+    opacity: 0.75;
+}
+
+.sidebar nav ul .sidebarItem span {
+    font-size: 1rem;
+    font-weight: 400;
+    opacity: 1;
+    color: var(--text);
+    margin: 0;
+}
+
+.sidebar nav ul .category-separator {
+    height: 2rem;
+}
+
+.sidebar nav ul .separator {
+    flex-grow: 1;
+}
+
+.sidebar nav ul .sidebarItem.active {
+    background-color: var(--background-hover);
+}
+
+.sidebar nav ul .sidebarItem.active:hover {
+    background-color: var(--background-hover);
+    padding-left: 1.5rem;
+}
+
+.sidebar nav ul .sidebarItem.active img {
+    opacity: 1;
+    filter: invert(25%) sepia(52%) saturate(3543%) hue-rotate(239deg) brightness(86%) contrast(88%);
+}
+
+.sidebar nav ul .sidebarItem.active span {
+    font-weight: 500;
+    color: var(--text);
 }
