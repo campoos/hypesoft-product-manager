@@ -1,5 +1,12 @@
 import './Sidebar.css';
 
+import { Link } from "react-router-dom"
+
+import dashboardicon from "../../../assets/sidebar/dashboards.png"
+import produtosdicon from "../../../assets/sidebar/products.png"
+import categoriasicon from "../../../assets/sidebar/category.png"
+import configsicon from "../../../assets/sidebar/settings.png"
+
 export default function Sidebar() {
 
   return (
@@ -7,15 +14,28 @@ export default function Sidebar() {
         <nav>
             <ul>
                 <span>GERAL</span>
-                <li><a href="/">Dashboard</a></li>
+                <Link to="/" className={`sidebarItem ${location.pathname === "/" ? "active" : ""}`}>
+                    <img src={dashboardicon} alt="dashboardsIcon"/>
+                    <span>Dashboards</span>
+                </Link>
                 <span>GERENCIAMENTO</span>
-                <li><a href="/produtos">Produtos</a></li>
-                <li><a href="/categorias">Categorias</a></li>
+                <Link to="/produtos" className={`sidebarItem ${location.pathname === "/produtos" ? "active" : ""}`}>
+                    <img src={produtosdicon} alt="produtosIcon"/>
+                    <span>Produtos</span>
+                </Link>
+                
+                <Link to="/categorias" className={`sidebarItem ${location.pathname === "/categorias" ? "active" : ""}`}>
+                    <img src={categoriasicon} alt="categoriasIcon"/>
+                    <span>Categorias</span>
+                </Link>
 
                 <div className="separator"></div>
 
                 <span>SUPORTE</span>
-                <li><a href="/configuracoes">Configurações</a></li>
+                <Link to="/configuracoes" className={`sidebarItem ${location.pathname === "/configuracoes" ? "active" : ""}`}>
+                    <img src={configsicon} alt="configuracoesIcon"/>
+                    <span>Configurações</span>
+                </Link>
             </ul>
         </nav>
     </aside>
