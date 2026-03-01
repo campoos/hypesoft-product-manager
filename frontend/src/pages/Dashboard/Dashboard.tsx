@@ -57,14 +57,15 @@ export default function Dashboard() {
           <nav>
             <ul>
               <span>Geral</span>
-              <li><a href="/dashboard">Dashboard</a></li>
+              <li><a href="/">Dashboard</a></li>
               <span>Gerenciamento</span>
-              <li><a href="/products">Produtos</a></li>
-              <li><a href="/categories">Categorias</a></li>
+              <li><a href="/produtos">Produtos</a></li>
+              <li><a href="/categorias">Categorias</a></li>
+
               <div className="separator"></div>
 
               <span>Suporte</span>
-              <li><a href="/products">Configurações</a></li>
+              <li><a href="/configuracoes">Configurações</a></li>
             </ul>
           </nav>
         </aside>
