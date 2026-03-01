@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react';
 import { fetchDashboard } from '../../services/dashboards.ts';
 import type { DashboardResponse } from '../../services/dashboards.ts';
 
+import { fetchProductsFiltered } from '../../services/products.ts';
+import type { ProductResponse } from '../../services/products.ts';
+
 import Header from '../../components/layout/header/Header.tsx'
 
 import iconStockValue from "../../assets/cards/coins.png"
@@ -11,10 +14,30 @@ import iconLowStock from "../../assets/cards/warning.png"
 
 export default function Dashboard() {
 
+  const [dataLowStock, setDataLowStock] = useState<ProductResponse[] | null>(null);
+  const [errorLowStock, setErrorLowStock] = useState<string | null>(null);
+
   const [dashboardData, setDashboardData] = useState<DashboardResponse | null>(null);
 
   useEffect(() => {
-    fetchDashboard().then(data => setDashboardData(data));
+    // Fetch dos dados do dashboard
+    fetchDashboard()
+      .then(data => setDashboardData(data))
+      .catch(err => console.error("Erro ao carregar dashboard", err));
+
+    // Fetch dos produtos com estoque baixo
+    fetchProductsFiltered(undefined, undefined, 100)
+      .then(data => {
+        if (data.length === 0) {
+          setDataLowStock([]);
+        } else {
+          setDataLowStock(data);
+        }
+      })
+      .catch(err => {
+        console.error("Erro ao buscar produtos com estoque baixo", err);
+        setErrorLowStock("Não foi possível carregar os produtos com estoque baixo");
+      });
   }, []);
 
   const cardsData = [
@@ -51,6 +74,42 @@ export default function Dashboard() {
               </article>
             ))}
           </section>
+          <div className="tabela-container">
+            <table className="tabela">
+              <thead className='header-container'>
+                <tr className='header-line'>
+                  <th className="produto-id">Produto ID</th>
+                  <th className="produto-nome">Produto</th>
+                  <th className="produto-categoria">Categoria</th>
+                  <th className="produto-estoque">Estoque</th>
+                  <th className="produto-preço">Preço</th>
+                </tr>
+              </thead>
+              <tbody>
+                {errorLowStock && (
+                  <tr>
+                    <td colSpan={5} className="tabela-mensagem">{errorLowStock}</td>
+                  </tr>
+                )}
+
+                {dataLowStock && dataLowStock.length === 0 && !errorLowStock && (
+                  <tr>
+                    <td colSpan={5} className="tabela-mensagem">Não existem produtos em baixo estoque</td>
+                  </tr>
+                )}
+
+                {dataLowStock && dataLowStock.length > 0 && dataLowStock.map(produto => (
+                  <tr key={produto.id}>
+                    <td>{produto.id}</td>
+                    <td>{produto.nome}</td>
+                    <td>{produto.categoria.nome}</td>
+                    <td>{produto.quantidadeEmEstoque}</td>
+                    <td>R${produto.preco.toLocaleString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </main>
       </div>
     </div>
