@@ -11,6 +11,7 @@ import Header from '../../components/layout/header/Header.tsx'
 import iconStockValue from "../../assets/cards/coins.png"
 import iconTotalProducts from "../../assets/cards/boxes.png"
 import iconLowStock from "../../assets/cards/warning.png"
+import iconLowStockList from "../../assets/cards/low-stock.png"
 
 export default function Dashboard() {
 
@@ -60,55 +61,63 @@ export default function Dashboard() {
           </nav>
         </aside>
         <main className='main-content'>
-          <h1>Dashboard</h1>
-          <section className="cards-container">
-            {cardsData.map((card, index) => (
-              <article className="card" key={index}>
-                <div className="card-header">
-                  <div className="image-container">
-                    <img src={card.icon} alt={card.title} />
+          <div className="main-container">
+            <h1>Dashboard</h1>
+            <section className="cards-container">
+              {cardsData.map((card, index) => (
+                <article className="card" key={index}>
+                  <div className="card-header">
+                    <div className="image-container">
+                      <img src={card.icon} alt={card.title} />
+                    </div>
+                    <h2>{card.title}</h2>
                   </div>
-                  <h2>{card.title}</h2>
+                  <p className='card-value'>{card.value}</p>
+                </article>
+              ))}
+            </section>
+            <div className="tabela-container">
+              <div className="tabela-section-header">
+                <div className="container-image">
+                  <img src={iconLowStockList} alt="" />
                 </div>
-                <p className='card-value'>{card.value}</p>
-              </article>
-            ))}
-          </section>
-          <div className="tabela-container">
-            <table className="tabela">
-              <thead className='header-container'>
-                <tr className='header-line'>
-                  <th className="produto-id">Produto ID</th>
-                  <th className="produto-nome">Produto</th>
-                  <th className="produto-categoria">Categoria</th>
-                  <th className="produto-estoque">Estoque</th>
-                  <th className="produto-preço">Preço</th>
-                </tr>
-              </thead>
-              <tbody>
-                {errorLowStock && (
-                  <tr>
-                    <td colSpan={5} className="tabela-mensagem">{errorLowStock}</td>
+                <h2>Produtos com estoque baixo</h2>
+              </div>
+              <table className="tabela">
+                <thead className='header-container'>
+                  <tr className='header-line'>
+                    <th className="produto-id">Produto ID</th>
+                    <th className="produto-nome">Produto</th>
+                    <th className="produto-categoria">Categoria</th>
+                    <th className="produto-estoque">Estoque</th>
+                    <th className="produto-preço">Preço</th>
                   </tr>
-                )}
+                </thead>
+                <tbody>
+                  {errorLowStock && (
+                    <tr>
+                      <td colSpan={5} className="tabela-mensagem">{errorLowStock}</td>
+                    </tr>
+                  )}
 
-                {dataLowStock && dataLowStock.length === 0 && !errorLowStock && (
-                  <tr>
-                    <td colSpan={5} className="tabela-mensagem">Não existem produtos em baixo estoque</td>
-                  </tr>
-                )}
+                  {dataLowStock && dataLowStock.length === 0 && !errorLowStock && (
+                    <tr>
+                      <td colSpan={5} className="tabela-mensagem">Não existem produtos em baixo estoque</td>
+                    </tr>
+                  )}
 
-                {dataLowStock && dataLowStock.length > 0 && dataLowStock.map(produto => (
-                  <tr key={produto.id}>
-                    <td>{produto.id}</td>
-                    <td>{produto.nome}</td>
-                    <td>{produto.categoria.nome}</td>
-                    <td>{produto.quantidadeEmEstoque}</td>
-                    <td>R${produto.preco.toLocaleString()}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                  {dataLowStock && dataLowStock.length > 0 && dataLowStock.map(produto => (
+                    <tr key={produto.id}>
+                      <td>{produto.id}</td>
+                      <td>{produto.nome}</td>
+                      <td>{produto.categoria.nome}</td>
+                      <td>{produto.quantidadeEmEstoque}</td>
+                      <td>R${produto.preco.toLocaleString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </main>
       </div>
