@@ -3,6 +3,8 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 2rem;
+
+  z-index: 2;
 }
 
 header .logo-container {
@@ -87,6 +89,43 @@ header .search-bar button img {
 
 header .search-bar img:active {
   height: 0.9rem;
+}
+
+header .search-bar .search-results {
+    background-color: var(--background);
+    padding: 1rem;
+    border: 1px solid var(--background-hover);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-radius: 16px;
+    margin-top: 1rem;
+
+    max-height: 30rem;
+    overflow-y: auto;
+
+    box-shadow: 0px 8px 16px 4px rgba(0,0,0,0.1);
+
+}
+
+header .search-bar .search-results li {
+    list-style: none;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 8px;
+    padding-left: 1rem;
+
+    color: var(--text);
+
+    transition: background-color 0.2 ease-in;
+
+    flex-shrink: 0;
+}
+
+header .search-bar .search-results li:hover {
+    background-color: var(--background-hover);
 }
 
 header .header-actions {
