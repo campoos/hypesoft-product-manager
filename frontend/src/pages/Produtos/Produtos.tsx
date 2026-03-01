@@ -6,7 +6,7 @@ import type { ProductResponse } from '../../services/products.ts';
 
 import Header from '../../components/layout/header/Header.tsx'
 import Sidebar from '../../components/layout/sidebar/Sidebar.tsx'
-import ProductModal from '../../components/forms/ProductModal';
+import ProductModal from '../../components/forms/product/ProductModal.tsx';
 
 import createIcon from "../../assets/plus.png"
 

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "./ProductModal.css";
 
-import { createProduct } from "../../../src/services/products.ts";
-import { fetchCategorias } from "../../../src/services/categories.ts";
+import { createProduct } from "../../../services/products.ts";
+import { fetchCategorias } from "../../../services/categories.ts";
 
-import type { ProductRequest } from "../../../src/services/products.tsx";
-import type { CategoriaResponse } from "../../../src/services/categories.ts";
+import type { ProductRequest } from "../../../services/products.ts";
+import type { CategoriaResponse } from "../../../services/categories.ts";
 
 interface ProductModalProps {
   isOpen: boolean;
