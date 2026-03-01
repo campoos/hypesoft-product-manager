@@ -7,7 +7,7 @@
 }
 
 .body-container {
-  background-color: aqua;
+  background-color: var(--background-hover);
   display: flex;
   flex-grow: 1;
   padding: 2rem;
@@ -16,10 +16,10 @@
 
 .body-container .sidebar {
   width: 25rem;
-  background-color: blueviolet;
+  background-color: var(--background);
 }
 
 .body-container .main-content {
-  background-color: brown;
+  background-color: var(--background);
   flex-grow: 1;
 }

@@ -16,7 +16,11 @@ export default function Dashboard() {
           </nav>
         </aside>
         <main className='main-content'>
-          <h1>main content aqui</h1>
+          <h1>Dashboard</h1>
+          <div className="cards-container">
+            <div className="card"></div>
+            <div className="card"></div>
+          </div>
         </main>
       </div>
     </div>
