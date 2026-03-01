@@ -70,6 +70,7 @@ export default function ProductModal({ isOpen, onClose, onSuccess }: ProductModa
 
             <form onSubmit={handleSubmit}>
 
+            <span>Nome</span>
             <input
                 name="nome"
                 placeholder="Nome"
@@ -78,32 +79,7 @@ export default function ProductModal({ isOpen, onClose, onSuccess }: ProductModa
                 required
             />
 
-            <input
-                name="descricao"
-                placeholder="Descrição"
-                value={form.descricao}
-                onChange={handleChange}
-                required
-            />
-
-            <input
-                type="number"
-                name="preco"
-                placeholder="Preço"
-                value={form.preco}
-                onChange={handleChange}
-                required
-            />
-
-            <input
-                type="number"
-                name="quantidadeEmEstoque"
-                placeholder="Estoque"
-                value={form.quantidadeEmEstoque}
-                onChange={handleChange}
-                required
-            />
-
+            <span>Categoria</span>
             <select
                 name="categoriaId"
                 value={form.categoriaId}
@@ -119,7 +95,36 @@ export default function ProductModal({ isOpen, onClose, onSuccess }: ProductModa
                 ))}
             </select>
 
-            {error && <p className="error">{error}</p>}
+            <span>Preço</span>
+            <input
+                type="number"
+                name="preco"
+                placeholder="Preço"
+                value={form.preco}
+                onChange={handleChange}
+                required
+            />
+
+            <span>Descrição</span>
+            <input
+                name="descricao"
+                placeholder="Descrição"
+                value={form.descricao}
+                onChange={handleChange}
+                required
+            />
+
+            <span>Estoque</span>
+            <input
+                type="number"
+                name="quantidadeEmEstoque"
+                placeholder="Estoque"
+                value={form.quantidadeEmEstoque}
+                onChange={handleChange}
+                required
+            />
+
+            <p className="error">{error}</p>
 
             <button type="submit">Criar</button>
             </form>
