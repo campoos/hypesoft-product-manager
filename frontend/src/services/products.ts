@@ -35,13 +35,13 @@ export const fetchProducts = async (): Promise<ProductResponse[]> => {
 export const fetchProductsFiltered = async (
   nome?: string,
   categoriaId?: string,
-  minEstoque?: number
+  estoqueMax?: number
 ): Promise<ProductResponse[]> => {
   const { data } = await api.get('/produtos', {
     params: {
       nome,
       categoriaId,
-      minEstoque,
+      estoqueMax,
     },
   });
   return data;
