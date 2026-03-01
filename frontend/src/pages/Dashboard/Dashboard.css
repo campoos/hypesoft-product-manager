@@ -20,6 +20,73 @@
 }
 
 .body-container .main-content {
-  background-color: var(--background);
+  background-color: var(--background-hover);
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
 }
+
+.body-container .main-content h1 {
+  font-weight: 500;
+  font-size: 1.5rem;
+
+  color: var(--text);
+}
+
+.body-container .main-content .cards-container {
+  display: flex;
+  justify-content: space-between;
+  height: 9rem;
+  gap: 2rem;
+}
+
+.body-container .main-content .cards-container .card {
+  background-color: var(--background);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-grow: 1;
+  border-radius: 8px;
+}
+
+.body-container .main-content .cards-container .card .card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.body-container .main-content .cards-container .card .card-header .image-container {
+  height: 2rem;
+  width: 2rem;
+  background-color: var(--terciary);
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.body-container .main-content .cards-container .card .card-header .image-container img {
+  height: 1rem;
+  filter: invert(25%) sepia(52%) saturate(3543%) hue-rotate(239deg) brightness(86%) contrast(88%);
+}
+
+.body-container .main-content .cards-container .card .card-header h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+
+.body-container .main-content .cards-container .card p {
+  font-size: 2rem;
+  font-weight: 600;
+
+  color: var(--text);
+
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+
