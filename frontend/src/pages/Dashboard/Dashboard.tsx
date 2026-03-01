@@ -56,9 +56,15 @@ export default function Dashboard() {
         <aside className="sidebar">
           <nav>
             <ul>
+              <span>Geral</span>
               <li><a href="/dashboard">Dashboard</a></li>
-              <li><a href="/products">Products</a></li>
-              <li><a href="/categories">Categories</a></li>
+              <span>Gerenciamento</span>
+              <li><a href="/products">Produtos</a></li>
+              <li><a href="/categories">Categorias</a></li>
+              <div className="separator"></div>
+
+              <span>Suporte</span>
+              <li><a href="/products">Configurações</a></li>
             </ul>
           </nav>
         </aside>
