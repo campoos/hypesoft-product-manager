@@ -56,7 +56,7 @@ export default function Produtos() {
             fetchProductsFiltered().then(setDataLowStock);
           }}
         />
-        {isModalOpen && (
+        {(isModalOpen || isEditModalOpen) && (
           <div className='dark-background'></div>
         )}
 
