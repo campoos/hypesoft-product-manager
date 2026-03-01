@@ -17,11 +17,6 @@
   min-height: 0;
 }
 
-.body-container .sidebar {
-  width: 25rem;
-  background-color: var(--background);
-}
-
 .body-container .main-container {
   background-color: var(--background-hover);
   overflow-y: auto;

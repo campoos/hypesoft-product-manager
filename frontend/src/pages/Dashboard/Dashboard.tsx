@@ -7,6 +7,7 @@ import { fetchProductsFiltered } from '../../services/products.ts';
 import type { ProductResponse } from '../../services/products.ts';
 
 import Header from '../../components/layout/header/Header.tsx'
+import Sidebar from '../../components/layout/sidebar/Sidebar.tsx'
 
 import iconStockValue from "../../assets/cards/coins.png"
 import iconTotalProducts from "../../assets/cards/boxes.png"
@@ -53,22 +54,9 @@ export default function Dashboard() {
     <div className="dashboard">
       <Header></Header>
       <div className="body-container">
-        <aside className="sidebar">
-          <nav>
-            <ul>
-              <span>Geral</span>
-              <li><a href="/">Dashboard</a></li>
-              <span>Gerenciamento</span>
-              <li><a href="/produtos">Produtos</a></li>
-              <li><a href="/categorias">Categorias</a></li>
 
-              <div className="separator"></div>
+        <Sidebar></Sidebar>
 
-              <span>Suporte</span>
-              <li><a href="/configuracoes">Configurações</a></li>
-            </ul>
-          </nav>
-        </aside>
         <main className='main-container'>
           <div className="main-content">
             <h1>Dashboard</h1>
