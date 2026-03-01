@@ -39,3 +39,7 @@
     font-weight: 500;
     color: var(--text);
 }
+
+.main-content .tabela-container .tabela tbody .linha-produto {
+    cursor: pointer;
+}
