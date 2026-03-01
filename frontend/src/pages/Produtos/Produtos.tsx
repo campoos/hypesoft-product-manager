@@ -44,6 +44,10 @@ export default function Produtos() {
                 fetchProductsFiltered().then(setDataLowStock);
             }}
         />
+        {isModalOpen && (
+          <div className='dark-background'></div>
+        )}
+
       <Header></Header>
       <div className="body-container">
 
