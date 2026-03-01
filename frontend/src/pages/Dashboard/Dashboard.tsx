@@ -60,8 +60,8 @@ export default function Dashboard() {
             </ul>
           </nav>
         </aside>
-        <main className='main-content'>
-          <div className="main-container">
+        <main className='main-container'>
+          <div className="main-content">
             <h1>Dashboard</h1>
             <section className="cards-container">
               {cardsData.map((card, index) => (

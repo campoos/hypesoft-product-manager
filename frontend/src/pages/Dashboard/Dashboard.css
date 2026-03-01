@@ -22,7 +22,7 @@
   background-color: var(--background);
 }
 
-.body-container .main-content {
+.body-container .main-container {
   background-color: var(--background-hover);
   overflow-y: auto;
   min-height: 0;
@@ -30,7 +30,7 @@
   flex: 1; 
 }
 
-.body-container .main-content .main-container {
+.body-container .main-container .main-content {
   display: flex;
   flex-direction: column;
   gap: 4rem;
@@ -41,21 +41,21 @@
   overflow-y: auto;
 }
 
-.body-container .main-content .main-container h1 {
+.body-container .main-container .main-content h1 {
   font-weight: 500;
   font-size: 1.5rem;
 
   color: var(--text);
 }
 
-.body-container .main-content .main-container .cards-container {
+.body-container .main-container .main-content .cards-container {
   display: flex;
   justify-content: space-between;
   height: 9rem;
   gap: 2rem;
 }
 
-.body-container .main-content .main-container .cards-container .card {
+.body-container .main-container .main-content .cards-container .card {
   background-color: var(--background);
   padding: 1rem;
   display: flex;
@@ -65,13 +65,13 @@
   border-radius: 8px;
 }
 
-.body-container .main-content .main-container .cards-container .card .card-header {
+.body-container .main-container .main-content .cards-container .card .card-header {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.body-container .main-content .main-container .cards-container .card .card-header .image-container {
+.body-container .main-container .main-content .cards-container .card .card-header .image-container {
   height: 2rem;
   width: 2rem;
   background-color: var(--terciary);
@@ -81,18 +81,18 @@
   align-items: center;
 }
 
-.body-container .main-content .main-container .cards-container .card .card-header .image-container img {
+.body-container .main-container .main-content .cards-container .card .card-header .image-container img {
   height: 1rem;
   filter: invert(25%) sepia(52%) saturate(3543%) hue-rotate(239deg) brightness(86%) contrast(88%);
 }
 
-.body-container .main-content .main-container .cards-container .card .card-header h2 {
+.body-container .main-container .main-content .cards-container .card .card-header h2 {
   font-size: 1rem;
   font-weight: 500;
   color: var(--text);
 }
 
-.body-container .main-content .main-container .cards-container .card p {
+.body-container .main-container .main-content .cards-container .card p {
   font-size: 2rem;
   font-weight: 600;
 
@@ -103,7 +103,7 @@
   align-items: center;
 }
 
-.body-container .main-content .main-container .tabela-container {
+.body-container .main-container .main-content .tabela-container {
   background-color: red;
   height: 50000px;
 }
