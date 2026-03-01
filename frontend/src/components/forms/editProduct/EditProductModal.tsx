@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./ProductModal.css";
+import "./EditProductModal.css";
 
 import {
   fetchProductById,
