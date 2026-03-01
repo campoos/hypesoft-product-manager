@@ -18,6 +18,8 @@ export default function Dashboard() {
   const [dataLowStock, setDataLowStock] = useState<ProductResponse[] | null>(null);
   const [errorLowStock, setErrorLowStock] = useState<string | null>(null);
 
+  const estoqueMax = 9
+
   const [dashboardData, setDashboardData] = useState<DashboardResponse | null>(null);
 
   useEffect(() => {
@@ -27,7 +29,7 @@ export default function Dashboard() {
       .catch(err => console.error("Erro ao carregar dashboard", err));
 
     // Fetch dos produtos com estoque baixo
-    fetchProductsFiltered(undefined, undefined, 100)
+    fetchProductsFiltered(undefined, undefined, estoqueMax)
       .then(data => {
         if (data.length === 0) {
           setDataLowStock([]);
@@ -82,6 +84,7 @@ export default function Dashboard() {
                   <img src={iconLowStockList} alt="" />
                 </div>
                 <h2>Produtos com estoque baixo</h2>
+                <h3>Estoque ≤ {estoqueMax} unidades</h3>
               </div>
               <table className="tabela">
                 <thead className='header-container'>
@@ -90,29 +93,29 @@ export default function Dashboard() {
                     <th className="produto-nome">Produto</th>
                     <th className="produto-categoria">Categoria</th>
                     <th className="produto-estoque">Estoque</th>
-                    <th className="produto-preço">Preço</th>
+                    <th className="produto-preco">Preço</th>
                   </tr>
                 </thead>
                 <tbody>
                   {errorLowStock && (
-                    <tr>
+                    <tr className='linha-mensagem'>
                       <td colSpan={5} className="tabela-mensagem">{errorLowStock}</td>
                     </tr>
                   )}
 
                   {dataLowStock && dataLowStock.length === 0 && !errorLowStock && (
-                    <tr>
+                    <tr className='linha-mensagem'>
                       <td colSpan={5} className="tabela-mensagem">Não existem produtos em baixo estoque</td>
                     </tr>
                   )}
 
                   {dataLowStock && dataLowStock.length > 0 && dataLowStock.map(produto => (
-                    <tr key={produto.id}>
-                      <td>{produto.id}</td>
-                      <td>{produto.nome}</td>
-                      <td>{produto.categoria.nome}</td>
-                      <td>{produto.quantidadeEmEstoque}</td>
-                      <td>R${produto.preco.toLocaleString()}</td>
+                    <tr key={produto.id} className='linha-produto'>
+                      <td className='id-td'>{produto.id}</td>
+                      <td className='nome-td'>{produto.nome}</td>
+                      <td className='categoria-td'>{produto.categoria.nome}</td>
+                      <td className='quant-td'>{produto.quantidadeEmEstoque}</td>
+                      <td className='preco-td'>R${produto.preco.toLocaleString()}</td>
                     </tr>
                   ))}
                 </tbody>

@@ -10,7 +10,7 @@
   background-color: var(--background-hover);
   display: flex;
   flex-grow: 1;
-  padding: 2rem;
+  padding: 2rem 0rem 0rem 2rem;
   gap: 2rem;
 
   overflow: hidden;
@@ -28,6 +28,9 @@
   min-height: 0;
 
   flex: 1; 
+
+  padding-right: 2rem;
+  padding-bottom: 2rem;
 }
 
 .body-container .main-container .main-content {
@@ -103,10 +106,116 @@
   align-items: center;
 }
 
+/* ---------------------- */
+
 .body-container .main-container .main-content .tabela-container {
-  background-color: red;
-  height: 50000px;
+  background-color: var(--background);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  border-radius: 8px;
+  min-height: 25rem;
 }
 
+.body-container .main-container .main-content .tabela-container .tabela-section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  height: fit-content;
+}
+
+.body-container .main-container .main-content .tabela-container .tabela-section-header .container-image {
+  height: 2rem;
+  width: 2rem;
+  background-color: var(--terciary);
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.body-container .main-container .main-content .tabela-container .tabela-section-header .container-image img {
+  height: 1rem;
+  filter: invert(25%) sepia(52%) saturate(3543%) hue-rotate(239deg) brightness(86%) contrast(88%);
+}
+
+.body-container .main-container .main-content .tabela-container .tabela-section-header h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.body-container .main-container .main-content .tabela-container .tabela-section-header h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+
+  flex-grow: 1;
+  display: flex;
+  justify-content: end;
+}
+
+.body-container .main-container .main-content .tabela-container .tabela {
+  border-collapse: collapse;
+  width: 95%;
+}
+
+
+.body-container .main-container .main-content .tabela-container .tabela thead tr {
+  height: 5rem;
+}
+
+.body-container .main-container .main-content .tabela-container .tabela thead tr th {
+  font-weight: 400;
+  opacity: 0.5;
+}
+
+.body-container .main-container .main-content .tabela-container .tabela thead tr .produto-id {
+  text-align: start;
+  width: 25%;
+  padding-left: 1rem;
+}
+.body-container .main-container .main-content .tabela-container .tabela thead tr .produto-preco {
+  text-align: end;
+  padding-right: 1rem;
+}
+
+.body-container .main-container .main-content .tabela-container .tabela tbody {
+  height: 10rem;
+}
+
+.body-container .main-container .main-content .tabela-container .tabela tbody .linha-produto {
+  height: 5em;
+}
+
+.body-container .main-container .main-content .tabela-container .tabela tbody .linha-mensagem {
+  height: 100%;
+}
+
+.body-container .main-container .main-content .tabela-container .tabela tbody .linha-produto:hover {
+  background-color: var(--background-hover);
+}
+
+.body-container .main-container .main-content .tabela-container .tabela tbody tr td {
+  text-align: center;
+}
+
+.body-container .main-container .main-content .tabela-container .tabela tbody .linha-mensagem .tabela-mensagem {
+  text-align: center;
+  opacity: 0.5;
+}
+
+.body-container .main-container .main-content .tabela-container .tabela tbody tr .id-td {
+  text-align: start;
+  padding-left: 1rem;
+}
+
+.body-container .main-container .main-content .tabela-container .tabela tbody tr .preco-td {
+  text-align: end;
+  padding-right: 1rem;
+}
 
 
