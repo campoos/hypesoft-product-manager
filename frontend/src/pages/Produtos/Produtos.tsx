@@ -6,10 +6,13 @@ import type { ProductResponse } from '../../services/products.ts';
 
 import Header from '../../components/layout/header/Header.tsx'
 import Sidebar from '../../components/layout/sidebar/Sidebar.tsx'
+import ProductModal from '../../components/forms/ProductModal';
 
 import createIcon from "../../assets/plus.png"
 
 export default function Produtos() {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);  
 
   const [dataLowStock, setDataLowStock] = useState<ProductResponse[] | null>(null);
   const [errorLowStock, setErrorLowStock] = useState<string | null>(null);
@@ -33,6 +36,14 @@ export default function Produtos() {
 
   return (
     <div className="dashboard">
+        <ProductModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            onSuccess={() => {
+                // opcional: recarregar lista depois
+                fetchProductsFiltered().then(setDataLowStock);
+            }}
+        />
       <Header></Header>
       <div className="body-container">
 
@@ -42,7 +53,7 @@ export default function Produtos() {
           <div className="main-content">
             <header>
                 <h1>Produtos</h1>
-                <button>
+                <button onClick={() => setIsModalOpen(true)}>
                     <img src={createIcon} alt="" />
                     <span>Criar</span>
                 </button>
