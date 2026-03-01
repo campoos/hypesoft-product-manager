@@ -83,7 +83,7 @@ export default function Produtos() {
 
                   {dataLowStock && dataLowStock.length === 0 && !errorLowStock && (
                     <tr className='linha-mensagem'>
-                      <td colSpan={5} className="tabela-mensagem">Não existem produtos em baixo estoque</td>
+                      <td colSpan={5} className="tabela-mensagem">Não existem produtos a serem listados</td>
                     </tr>
                   )}
 
