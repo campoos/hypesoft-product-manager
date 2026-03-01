@@ -1,0 +1,166 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+}
+
+header .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+header .logo-container .logo-img {
+  background-color: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+header .logo-container .logo-img img {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin: 0.5rem;
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(273deg) brightness(200%) contrast(101%);
+}
+
+header .logo-container h1 {
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+header .logo-container h1 strong {
+  color: var(--primary);
+}
+
+header .search-bar {
+  height: 3rem;
+  width: 25rem;
+  position: relative;
+}
+
+header .search-bar input {
+  height: 100%;
+  width: 100%;
+  border-radius: 16px;
+  border: none;
+  padding-left: 1rem;
+  padding-right: 3rem;
+  background-color: var(--background-hover);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+header .search-bar input::placeholder {
+  font-size: 1rem;
+  color: var(--text);
+  opacity: 0.5;
+}
+
+header .search-bar input:focus {
+  outline: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+header .search-bar button {
+  height: 1rem;
+  width: 1rem;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 1rem;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+header .search-bar button img {
+  height: 1rem;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+header .search-bar img:active {
+  height: 0.9rem;
+}
+
+header .header-actions {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+header .header-actions button {
+  height: 1.5rem;
+  width: 1.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: transparent;
+  border: none;
+}
+
+header .header-actions img {
+  height: 1.5rem;
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+header .header-actions img:active {
+  transform: scale(0.9);
+}
+
+header .header-actions .separator {
+  height: 1rem;
+  width: 2px;
+  background-color: var(--text);
+  opacity: 0.1;
+  border: none;
+  border-radius: 8px;
+}
+
+header .header-actions .profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+header .header-actions .profile img {
+  height: 3rem;
+  border-radius: 50px;
+  opacity: 1;
+  cursor: auto;
+}
+
+header .header-actions .profile img:active {
+  transform: scale(1);
+}
+
+header .header-actions .profile .profile-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+
+  width: 10rem;
+}
+
+header .header-actions .profile .profile-data h2 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+header .header-actions .profile .profile-data span {
+  font-size: 0.75rem;
+  font-weight: 400;
+  opacity: 0.5;
+  color: var(--text);
+}

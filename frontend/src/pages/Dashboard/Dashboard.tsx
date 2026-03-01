@@ -1,10 +1,10 @@
 import './Dashboard.css';
+import Header from '../../components/layout/header/Header.tsx'
 
 export default function Dashboard() {
   return (
     <div className="dashboard">
-      <h1>Página Inicial / Dashboard</h1>
-      <p>Conteúdo inicial aqui...</p>
+      <Header></Header>
     </div>
   );
 }
