@@ -113,6 +113,14 @@ Principais funcionalidades da API:
 
 ## 🧪 Testes
 
+A validação da aplicação foi feita através de:
+
+- Testes manuais via Postman para validação dos endpoints
+- Testes de aceitação com usuários (feedback real de usabilidade)
+- Validação de fluxos principais (CRUD e controle de estoque)
+
+Obs: Testes automatizados podem ser adicionados como evolução futura.
+
 A aplicação pode ser testada via Swagger:
 http://localhost:5000/swagger
 
