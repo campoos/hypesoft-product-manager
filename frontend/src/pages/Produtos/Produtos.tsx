@@ -9,9 +9,23 @@ import Sidebar from '../../components/layout/sidebar/Sidebar.tsx'
 import EditProductModal from '../../components/forms/editProduct/EditProductModal.tsx';
 import ProductModal from '../../components/forms/product/ProductModal.tsx';
 
+import { useLocation, useNavigate } from "react-router-dom";
+
 import createIcon from "../../assets/plus.png"
 
 export default function Produtos() {
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (location.state?.openProductId) {
+      setSelectedProductId(location.state.openProductId);
+      setIsEditModalOpen(true);
+
+      navigate(location.pathname, { replace: true });
+    }
+  }, [location.state]);
 
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);

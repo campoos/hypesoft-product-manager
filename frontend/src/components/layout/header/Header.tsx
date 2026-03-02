@@ -5,15 +5,18 @@ import sun from "../../../assets/header/sun.png"
 import notification from "../../../assets/header/notification.png"
 import pfp from "../../../assets/header/pfp.png"
 
+import { useNavigate } from "react-router-dom";
+
 import { useState, useEffect } from 'react';
 
 import { fetchProductsFiltered } from '../../../services/products.ts';
 import type { ProductResponse } from '../../../services/products.ts';
 
 export default function Header() {
+    const navigate = useNavigate();
 
-const [query, setQuery] = useState('');
-    const [results, setResults] = useState<ProductResponse[]>([]);
+    const [query, setQuery] = useState('');
+        const [results, setResults] = useState<ProductResponse[]>([]);
 
     useEffect(() => {
         if (query.length === 0) {
@@ -53,7 +56,18 @@ const [query, setQuery] = useState('');
             {results.length > 0 && (
             <ul className="search-results">
                 {results.map(product => (
-                <li key={product.id}>{product.nome}</li>
+                <li
+                    key={product.id}
+                    onClick={() => {
+                        navigate("/produtos", {
+                        state: { openProductId: product.id }
+                        });
+                        setResults([]);
+                        setQuery('');
+                    }}
+                    >
+                    {product.nome}
+                </li>
                 ))}
             </ul>
             )}
