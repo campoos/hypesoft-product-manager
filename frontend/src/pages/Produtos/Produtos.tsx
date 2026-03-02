@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 
 import { fetchProductsFiltered } from '../../services/products.ts';
 import type { ProductResponse } from '../../services/products.ts';
+import { fetchCategorias } from "../../services/categories.ts";
+import type { CategoriaResponse } from "../../services/categories";
 
 import Header from '../../components/layout/header/Header.tsx'
 import Sidebar from '../../components/layout/sidebar/Sidebar.tsx'
@@ -15,6 +17,41 @@ import createIcon from "../../assets/plus.png"
 
 export default function Produtos() {
 
+  const [filters, setFilters] = useState({
+    nome: "",
+    categoriaId: "",
+    estoqueMax: ""
+  });
+
+  const [categorias, setCategorias] = useState<CategoriaResponse[]>([]);
+
+  useEffect(() => {
+    fetchCategorias().then(setCategorias);
+  }, []);
+
+  useEffect(() => {
+    const delay = setTimeout(() => {
+      fetchProductsFiltered(
+        filters.nome || undefined,
+        filters.categoriaId || undefined,
+        filters.estoqueMax ? Number(filters.estoqueMax) : undefined
+      )
+        .then(setDataLowStock)
+        .catch(() => setErrorLowStock("Erro ao buscar produtos"));
+    }, 300); // debounce
+
+    return () => clearTimeout(delay);
+  }, [filters]);
+
+  const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+
+    setFilters(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -25,32 +62,15 @@ export default function Produtos() {
 
       navigate(location.pathname, { replace: true });
     }
-  }, [location.state]);
+  }, [location.state, navigate]);
 
   const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);  
 
-  const [dataLowStock, setDataLowStock] = useState<ProductResponse[] | null>(null);
+  const [dataLowStock, setDataLowStock] = useState<ProductResponse[]>([]);
   const [errorLowStock, setErrorLowStock] = useState<string | null>(null);
-
-  useEffect(() => {
-
-    // Fetch dos produtos com estoque baixo
-    fetchProductsFiltered(undefined, undefined, undefined)
-      .then(data => {
-        if (data.length === 0) {
-          setDataLowStock([]);
-        } else {
-          setDataLowStock(data);
-        }
-      })
-      .catch(err => {
-        console.error("Erro ao buscar produtos com estoque baixo", err);
-        setErrorLowStock("Não foi possível carregar os produtos com estoque baixo");
-      });
-  }, []);
 
   return (
     <div className="dashboard">
@@ -58,7 +78,6 @@ export default function Produtos() {
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             onSuccess={() => {
-                // opcional: recarregar lista depois
                 fetchProductsFiltered().then(setDataLowStock);
             }}
         />
@@ -90,6 +109,37 @@ export default function Produtos() {
             </header>
             
             <div className="tabela-container">
+              <div className="filters">
+                <input
+                  type="text"
+                  name="nome"
+                  placeholder="Buscar por nome..."
+                  value={filters.nome}
+                  onChange={handleFilterChange}
+                />
+
+                <select
+                  name="categoriaId"
+                  value={filters.categoriaId}
+                  onChange={handleFilterChange}
+                >
+                  <option value="">Todas categorias</option>
+
+                  {categorias.map((cat) => (
+                    <option key={cat.id} value={cat.id}>
+                      {cat.nome}
+                    </option>
+                  ))}
+                </select>
+
+                <input
+                  type="number"
+                  name="estoqueMax"
+                  placeholder="Estoque máximo"
+                  value={filters.estoqueMax}
+                  onChange={handleFilterChange}
+                />
+              </div>
               <table className="tabela">
                 <thead className='header-container'>
                   <tr className='header-line'>
