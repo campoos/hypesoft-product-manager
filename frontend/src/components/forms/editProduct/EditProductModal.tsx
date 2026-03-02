@@ -32,7 +32,6 @@ export default function EditProductModal({
   const [categorias, setCategorias] = useState<CategoriaResponse[]>([]);
   const [error, setError] = useState<string | null>(null);
 
-  // 🔹 Carregar produto + categorias
   useEffect(() => {
     if (!isOpen || !productId) return;
 
@@ -70,7 +69,6 @@ export default function EditProductModal({
     }));
   };
 
-  // 🔹 Verifica se houve alteração
   const isDirty = JSON.stringify(form) !== JSON.stringify(originalForm);
 
   const handleUpdate = async (e: React.FormEvent) => {
@@ -171,7 +169,7 @@ export default function EditProductModal({
             <button
               type="submit"
               disabled={!isDirty}
-              className="save"
+              className={isDirty ? "save" : "save-disabled"}
             >
               Salvar
             </button>
