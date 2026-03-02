@@ -40,6 +40,43 @@
     color: var(--text);
 }
 
+.main-content .tabela-container .filters {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    justify-content: end;
+}
+
+.main-content .tabela-container .filters input {
+    font-size: 1rem;
+    padding-left: 1rem;
+    height: 3rem;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--background-hover);
+    color: var(--text);
+    width: 15rem;
+}
+
+.main-content .tabela-container .filters input:focus {
+  outline: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.main-content .tabela-container .filters select {
+    font-size: 1rem;
+    padding-left: 1rem;
+    height: 3rem;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--background-hover);
+    color: var(--text);
+    width: 15rem;
+}
+
+.main-content .tabela-container .filters select:focus {
+  outline: 1px solid rgba(0, 0, 0, 0.3);
+}
+
 .main-content .tabela-container .tabela tbody .linha-produto {
     cursor: pointer;
 }
