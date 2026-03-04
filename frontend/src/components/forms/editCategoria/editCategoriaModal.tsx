@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./EditCategoriaModal.css";
+import "./editCategoriaModal.css";
 
 import {
   fetchCategoriasById,
