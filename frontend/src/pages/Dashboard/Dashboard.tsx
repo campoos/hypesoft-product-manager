@@ -14,18 +14,7 @@ import iconTotalProducts from "../../assets/cards/boxes.png"
 import iconLowStock from "../../assets/cards/warning.png"
 import iconLowStockList from "../../assets/cards/low-stock.png"
 
-import keycloak, { type KeycloakTokenParsed } from '../../auth/keycloak';
-
 export default function Dashboard() {
-
-  const [username, setUsername] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (keycloak.authenticated) {
-      const token: KeycloakTokenParsed | undefined = keycloak.tokenParsed;
-      setUsername(token?.preferred_username || token?.name || null);
-    }
-  }, []);
 
   const [dataLowStock, setDataLowStock] = useState<ProductResponse[] | null>(null);
   const [errorLowStock, setErrorLowStock] = useState<string | null>(null);
@@ -70,7 +59,7 @@ export default function Dashboard() {
 
         <main className='main-container'>
           <div className="main-content">
-            <h1>Dashboard - {username}</h1>
+            <h1>Dashboard</h1>
             <section className="cards-container">
               {cardsData.map((card, index) => (
                 <article className="card" key={index}>
