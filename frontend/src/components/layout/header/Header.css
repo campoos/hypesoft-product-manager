@@ -207,6 +207,10 @@ header .header-actions .profile .profile-data h2 {
   font-size: 1rem;
   font-weight: 500;
   color: var(--text);
+  overflow-x: hidden;
+  white-space: nowrap;
+  width: 100%;
+  text-overflow: ellipsis;
 }
 
 header .header-actions .profile .profile-data span {
