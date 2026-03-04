@@ -10,7 +10,7 @@
 
     width: 50rem;
 
-    z-index: 10;
+    z-index: 7000;
 }
 
 .modal-overlay .modal {
@@ -112,6 +112,8 @@
     background-color: var(--secondary);
 
     transition: all 0.2 ease-in-out;
+
+    cursor: pointer;
 }
 
 .modal-overlay .modal form button:active {
