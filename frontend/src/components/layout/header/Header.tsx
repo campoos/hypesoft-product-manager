@@ -20,11 +20,13 @@ export default function Header() {
 
         
     const [username, setUsername] = useState<string | null>(null);
+    const [role, setRole] = useState<string | null>(null);
 
     useEffect(() => {
         if (keycloak.authenticated) {
         const token: KeycloakTokenParsed | undefined = keycloak.tokenParsed;
         setUsername(token?.name || token?.preferred_username || null);
+        setRole(token?.realm_access?.roles?.[0] || "guest");
         }
     }, []);
 
@@ -114,7 +116,7 @@ export default function Header() {
                     <img src={pfp} alt="Profile picture" className='pfp' />
                     <div className="profile-data">
                         <h2>{username}</h2>
-                        <span>Administrador</span>
+                        <span>{role}</span>
                     </div>
                     <img src={arrow} className={`arrow ${isDropdownOpen ? 'up' : 'right'}`} alt="" />
                 </div>
