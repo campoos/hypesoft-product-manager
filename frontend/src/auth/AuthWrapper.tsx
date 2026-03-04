@@ -9,9 +9,11 @@ const AuthWrapper: React.FC<Props> = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-    keycloak.init({ onLoad: 'login-required' }).then(auth => {
-      setAuthenticated(auth);
-    });
+    // Inicializa o Keycloak diretamente
+    keycloak
+      .init({ onLoad: 'login-required' })
+      .then((auth: boolean) => setAuthenticated(auth))
+      .catch(() => setAuthenticated(false));
   }, []);
 
   if (!authenticated) return <div>Loading Keycloak...</div>;
