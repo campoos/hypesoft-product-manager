@@ -24,7 +24,7 @@ export default function Header() {
     useEffect(() => {
         if (keycloak.authenticated) {
         const token: KeycloakTokenParsed | undefined = keycloak.tokenParsed;
-        setUsername(token?.preferred_username || token?.name || null);
+        setUsername(token?.name || token?.preferred_username || null);
         }
     }, []);
 
