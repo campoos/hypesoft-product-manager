@@ -1,0 +1,18 @@
+.actions {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    gap: 10rem;
+    padding: 0rem 2rem;
+}
+
+.actions button {
+    height: 4rem;
+    cursor: pointer;
+}
+
+.actions .save-disabled {
+    cursor: default;
+    opacity: 0.5;
+    pointer-events: none;
+}
