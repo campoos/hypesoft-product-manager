@@ -1,0 +1,58 @@
+{
+  "clients": [
+  {
+    "clientId": "meu-site",
+    "enabled": true,
+    "publicClient": true,
+    "protocol": "openid-connect",
+    "redirectUris": [
+      "http://localhost:3000/*"
+    ],
+    "webOrigins": [
+      "http://localhost:3000"
+    ],
+    "standardFlowEnabled": true,
+    "directAccessGrantsEnabled": true
+  }
+  ],
+  "realm": "hypesoft",
+  "enabled": true,
+  "roles": {
+    "realm": [
+      { "name": "administrador" },
+      { "name": "usuario" }
+    ]
+  },
+  "users": [
+    {
+      "username": "admin",
+      "enabled": true,
+      "email": "ulisses@hypesoft.com",
+      "firstName": "Ulisses",
+      "lastName": "Souza",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "admin123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["administrador"]
+    },
+    {
+      "username": "user",
+      "enabled": true,
+      "email": "joao@hypesoft.com",
+      "firstName": "João",
+      "lastName": "Campos",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "user123",
+          "temporary": false
+        }
+      ],
+      "realmRoles": ["usuario"]
+    }
+  ]
+}

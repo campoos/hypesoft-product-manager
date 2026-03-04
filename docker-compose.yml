@@ -23,7 +23,7 @@ services:
     build: ./backend
     container_name: api_hypesoft
     ports:
-      - "5000:8080"
+      - "5000:5000"
     depends_on:
       - mongodb
 
@@ -34,6 +34,18 @@ services:
       - "3000:3000"
     depends_on:
       - backend
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:24.0
+    container_name: keycloak_hypesoft
+    command: start-dev --import-realm
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./keycloak/realm-export.json:/opt/keycloak/data/import/realm-export.json
 
 volumes:
   mongo_data:
