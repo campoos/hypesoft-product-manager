@@ -15,7 +15,19 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import createIcon from "../../assets/plus.png"
 
+import keycloak, { type KeycloakTokenParsed } from '../../auth/keycloak';
+
 export default function Produtos() {
+
+   const [role, setRole] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (keycloak.authenticated) {
+        const token: KeycloakTokenParsed | undefined = keycloak.tokenParsed;
+        setRole(token?.realm_access?.roles?.[0] || "guest");
+        }
+    }, []);
+
 
   const [filters, setFilters] = useState({
     nome: "",
@@ -102,7 +114,7 @@ export default function Produtos() {
           <div className="main-content">
             <header>
                 <h1>Produtos</h1>
-                <button onClick={() => setIsModalOpen(true)}>
+                <button onClick={() => setIsModalOpen(true)} disabled={role !== "administrador"}>
                     <img src={createIcon} alt="" />
                     <span>Criar</span>
                 </button>
@@ -166,8 +178,11 @@ export default function Produtos() {
                   {dataLowStock && dataLowStock.length > 0 && dataLowStock.map(produto => (
                     <tr
                       key={produto.id}
-                      className='linha-produto'
+                      className={`linha-produto ${role !== "administrador" ? 'disabled' : ''}`} 
                       onClick={() => {
+                        if(role !== "administrador"){
+                          return
+                        }
                         setSelectedProductId(produto.id);
                         setIsEditModalOpen(true);
                       }}
