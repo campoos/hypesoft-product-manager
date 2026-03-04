@@ -6,7 +6,7 @@ import type { CategoriaResponse } from "../../services/categories";
 
 import Header from '../../components/layout/header/Header.tsx'
 import Sidebar from '../../components/layout/sidebar/Sidebar.tsx'
-import EditProductModal from '../../components/forms/editProduct/EditProductModal.tsx';
+import EditCategoriaModal from '../../components/forms/editCategoria/editCategoriaModal.tsx';
 import CategoriaModal from '../../components/forms/categoria/CategoriaModal.tsx';
 
 import { useLocation, useNavigate } from "react-router-dom";
@@ -47,14 +47,14 @@ export default function Categorias() {
 
   useEffect(() => {
     if (location.state?.openProductId) {
-      setSelectedProductId(location.state.openProductId);
+      setSelectedCategoriaId(location.state.openProductId);
       setIsEditModalOpen(true);
 
       navigate(location.pathname, { replace: true });
     }
   }, [location.state, navigate]);
 
-  const [selectedProductId, setSelectedProductId] = useState<string | null>(null);
+  const [selectedCategoriaId, setSelectedCategoriaId] = useState<string | null>(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);  
@@ -68,8 +68,8 @@ export default function Categorias() {
                 fetchCategorias().then(setCategorias);
             }}
         />
-        <EditProductModal
-          productId={selectedProductId}
+        <EditCategoriaModal
+          categoriaId={selectedCategoriaId}
           isOpen={isEditModalOpen}
           onClose={() => setIsEditModalOpen(false)}
           onSuccess={() => {
@@ -119,7 +119,7 @@ export default function Categorias() {
                         if(role !== "administrador"){
                           return
                         }
-                        setSelectedProductId(categoria.id);
+                        setSelectedCategoriaId(categoria.id);
                         setIsEditModalOpen(true);
                       }}
                     >
