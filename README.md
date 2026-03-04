@@ -118,13 +118,9 @@ O frontend segue uma arquitetura baseada em:
 ## ⚙️ Decisões técnicas
 
 - **MongDB** pela flexibilidade de schema e facilidade de evolução
-
 - **Docker** para padronização de ambiente e facilidade de execução
-
 - **Keycloak** para autenticação robusta e escalável
-
 - **Clean Architecture** para organização e manutenção do backend
-
 - **Vite** pela velocidade no desenvolvimento frontend
 
 ## 🔌 API
@@ -133,32 +129,79 @@ Principais funcionalidades da API:
 
 - CRUD completo de produtos
 - Controle de estoque
-- Atualização de quantidade em tempo real
-- Endpoint de dashboard com métricas de estoque
+- Atualização em tempo real
+- Dashboard com métricas
 
 ### Endpoints:
 
-- GET /produtos → Lista todos os produtos
-- POST /produtos → Cria um novo produto
-- PUT /produtos/{id} → Atualiza um produto
-- DELETE /produtos/{id} → Remove um produto
-- GET /dashboard → Retorna métricas do estoque
+- GET /produtos
+- POST /produtos
+- PUT /produtos/{id}
+- DELETE /produtos/{id}
+
+---
+
+- GET /categorias
+- POST /categorias
+- PUT /categorias/{id}
+- DELETE /categorias/{id}
+
+---
+
+- GET /dashboard
 
 ## 🧪 Testes
 
 A validação da aplicação foi feita através de:
 
-- Testes manuais via Postman para validação dos endpoints
-- Testes de aceitação com usuários (feedback real de usabilidade)
-- Validação de fluxos principais (CRUD e controle de estoque)
+- Testes manuais via Postman
+- Testes de fluxo (CRUD + estoque)
+- Testes de usabilidade
 
-Obs: Testes automatizados podem ser adicionados como evolução futura.
+🔧 Testes automatizados podem ser adicionados como melhoria futura.
 
-A aplicação pode ser testada via Swagger:
-http://localhost:5000/swagger
+## Troubleshooting
+
+### 🔸 Keycloak não carregou o realm
+
+- Verifique se você está no realm correto (não no master)
+- Reinicie os containers:
+
+```bash
+docker-compose down -v
+docker-compose up --build
+```
+
+### 🔸 Erros no frontend (imports)
+
+```bash
+cd frontend
+npm install
+```
+
+### 🔸 Porta em uso
+
+Caso alguma porta esteja ocupada, altere no *docker-compose.yml.*
 
 ## 📸 Interface
 
 ![Dashboard](./docs/images/dashboard-preview.png)
 ![Produtos](./docs/images/produtos-preview.png)
 ![Criação de produto](./docs/images/modal-criacao-preview.png)
+
+## 📈 Melhorias futuras
+
+- Testes automatizados (unitários e integração)
+- Sistema de permissões por roles
+- Paginação e filtros avançados
+- Deploy em cloud (Azure / AWS)
+- CI/CD pipeline
+
+## 👨‍💻 Autor
+
+Desenvolvido por João Victor
+Projeto criado como desafio técnico com foco em boas práticas e arquitetura escalável.
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT.
