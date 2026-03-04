@@ -88,3 +88,7 @@
 .main-content .tabela-container .tabela tbody .linha-produto {
     cursor: pointer;
 }
+
+.main-content .tabela-container .tabela tbody .linha-produto.disabled {
+    cursor: auto;
+}
