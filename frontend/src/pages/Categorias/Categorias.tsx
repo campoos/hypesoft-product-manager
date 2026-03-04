@@ -7,7 +7,7 @@ import type { CategoriaResponse } from "../../services/categories";
 import Header from '../../components/layout/header/Header.tsx'
 import Sidebar from '../../components/layout/sidebar/Sidebar.tsx'
 import EditProductModal from '../../components/forms/editProduct/EditProductModal.tsx';
-import ProductModal from '../../components/forms/product/ProductModal.tsx';
+import CategoriaModal from '../../components/forms/categoria/CategoriaModal.tsx';
 
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -61,7 +61,7 @@ export default function Categorias() {
 
   return (
     <div className="dashboard">
-        <ProductModal
+        <CategoriaModal
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             onSuccess={() => {
