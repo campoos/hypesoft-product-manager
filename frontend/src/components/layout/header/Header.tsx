@@ -24,9 +24,18 @@ export default function Header() {
 
     useEffect(() => {
         if (keycloak.authenticated) {
-        const token: KeycloakTokenParsed | undefined = keycloak.tokenParsed;
-        setUsername(token?.name || token?.preferred_username || null);
-        setRole(token?.realm_access?.roles?.[0] || "guest");
+            const token: KeycloakTokenParsed | undefined = keycloak.tokenParsed;
+            setUsername(token?.name || token?.preferred_username || null);
+
+            const roles = token?.realm_access?.roles || [];
+
+            if (roles.includes("administrador")) {
+                setRole("administrador");
+            } else if (roles.includes("usuario")) {
+                setRole("usuario");
+            } else {
+                setRole("guest");
+            }
         }
     }, []);
 

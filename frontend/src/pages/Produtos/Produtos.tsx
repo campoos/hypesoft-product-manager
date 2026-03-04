@@ -21,10 +21,20 @@ export default function Produtos() {
 
    const [role, setRole] = useState<string | null>(null);
 
+    
     useEffect(() => {
         if (keycloak.authenticated) {
-        const token: KeycloakTokenParsed | undefined = keycloak.tokenParsed;
-        setRole(token?.realm_access?.roles?.[0] || "guest");
+            const token: KeycloakTokenParsed | undefined = keycloak.tokenParsed;
+
+            const roles = token?.realm_access?.roles || [];
+
+            if (roles.includes("administrador")) {
+                setRole("administrador");
+            } else if (roles.includes("usuario")) {
+                setRole("usuario");
+            } else {
+                setRole("guest");
+            }
         }
     }, []);
 
