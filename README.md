@@ -62,12 +62,31 @@ Após subir o projeto, acesse:
 
 O sistema utiliza o Keycloak para autenticação e autorização via OpenID Connect.
 
-### Credenciais padrão (ambiente local):
+### 🔧 Acesso ao Keycloak (admin do sistema de autenticação)
 
 - Usuário: admin
 - Senha: admin
 
-O realm e o client são configurados automaticamente via import no container.
+> Usado para acessar o painel administrativo do Keycloak e gerenciar usuários, roles e clients.
+
+---
+
+### 👥 Acesso à aplicação
+
+#### 👑 Administrador
+- Usuário: admin
+- Senha: admin123
+
+#### 👤 Usuário comum
+- Usuário: user
+- Senha: user123
+
+> ⚠️ Esses usuários são criados automaticamente via import do realm no container do Keycloak.
+
+---
+
+- Admin: acesso completo ao sistema (CRUD e dashboard)  
+- User: acesso restrito (visualização)
 
 ## 📁 Estrutura do projeto
 ```bash
@@ -158,7 +177,7 @@ A validação da aplicação foi feita através de:
 - Testes de fluxo (CRUD + estoque)
 - Testes de usabilidade
 
-🔧 Testes automatizados podem ser adicionados como melhoria futura.
+> 🔧 Testes automatizados podem ser adicionados como melhoria futura.
 
 ## Troubleshooting
 
