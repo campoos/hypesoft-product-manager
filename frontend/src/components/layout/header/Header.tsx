@@ -13,10 +13,21 @@ import { useState, useEffect } from 'react';
 import { fetchProductsFiltered } from '../../../services/products.ts';
 import type { ProductResponse } from '../../../services/products.ts';
 
-import keycloak from '../../../auth/keycloak';
+import keycloak, { type KeycloakTokenParsed } from '../../../auth/keycloak';
 
 export default function Header() {
     const navigate = useNavigate();
+
+        
+    const [username, setUsername] = useState<string | null>(null);
+
+    useEffect(() => {
+        if (keycloak.authenticated) {
+        const token: KeycloakTokenParsed | undefined = keycloak.tokenParsed;
+        setUsername(token?.preferred_username || token?.name || null);
+        }
+    }, []);
+
 
     const handleLogout = () => {
         keycloak.logout({
@@ -102,7 +113,7 @@ export default function Header() {
                 <div className="profile-container">
                     <img src={pfp} alt="Profile picture" className='pfp' />
                     <div className="profile-data">
-                        <h2>Henrique Araujo</h2>
+                        <h2>{username}</h2>
                         <span>Administrador</span>
                     </div>
                     <img src={arrow} className={`arrow ${isDropdownOpen ? 'up' : 'right'}`} alt="" />
