@@ -1,42 +1,35 @@
+// src/pages/dashboard/Dashboard.tsx
 import './Dashboard.css';
 import { useEffect, useState } from 'react';
-import { fetchDashboard } from '../../services/dashboards.ts';
-import type { DashboardResponse } from '../../services/dashboards.ts';
 
-import { fetchProductsFiltered } from '../../services/products.ts';
+import { useDashboardData } from '../../hooks/useDashboardData';
+import { fetchProductsFiltered } from '../../services/products';
 import type { ProductResponse } from '../../services/products.ts';
 
-import Header from '../../components/layout/header/Header.tsx'
-import Sidebar from '../../components/layout/sidebar/Sidebar.tsx'
+import Header from '../../components/layout/header/Header';
+import Sidebar from '../../components/layout/sidebar/Sidebar';
 
-import iconStockValue from "../../assets/cards/coins.png"
-import iconTotalProducts from "../../assets/cards/boxes.png"
-import iconLowStock from "../../assets/cards/warning.png"
-import iconLowStockList from "../../assets/cards/low-stock.png"
+import iconStockValue from "../../assets/cards/coins.png";
+import iconTotalProducts from "../../assets/cards/boxes.png";
+import iconLowStock from "../../assets/cards/warning.png";
+import iconLowStockList from "../../assets/cards/low-stock.png";
 
 export default function Dashboard() {
 
+  const estoqueMax = 9;
+
+  // Hook que já retorna dashboardData, loading e error
+  const { dashboardData, loading, error } = useDashboardData();
+
+  // Estado para produtos com estoque baixo
   const [dataLowStock, setDataLowStock] = useState<ProductResponse[] | null>(null);
   const [errorLowStock, setErrorLowStock] = useState<string | null>(null);
 
-  const estoqueMax = 9
-
-  const [dashboardData, setDashboardData] = useState<DashboardResponse | null>(null);
-
   useEffect(() => {
-    // Fetch dos dados do dashboard
-    fetchDashboard()
-      .then(data => setDashboardData(data))
-      .catch(err => console.error("Erro ao carregar dashboard", err));
-
-    // Fetch dos produtos com estoque baixo
     fetchProductsFiltered(undefined, undefined, estoqueMax)
       .then(data => {
-        if (data.length === 0) {
-          setDataLowStock([]);
-        } else {
-          setDataLowStock(data);
-        }
+        if (data.length === 0) setDataLowStock([]);
+        else setDataLowStock(data);
       })
       .catch(err => {
         console.error("Erro ao buscar produtos com estoque baixo", err);
@@ -50,16 +43,19 @@ export default function Dashboard() {
     { icon: iconLowStock, title: "Produtos com Estoque Baixo", value: dashboardData?.produtosComEstoqueBaixo ?? "..." }
   ];
 
+  if (loading) return <p>Carregando dashboard...</p>;
+  if (error) return <p>{error}</p>;
+
   return (
     <div className="dashboard">
-      <Header></Header>
+      <Header />
       <div className="body-container">
-
-        <Sidebar></Sidebar>
-
+        <Sidebar />
         <main className='main-container'>
           <div className="main-content">
             <h1>Dashboard</h1>
+
+            {/* Cards */}
             <section className="cards-container">
               {cardsData.map((card, index) => (
                 <article className="card" key={index}>
@@ -73,6 +69,8 @@ export default function Dashboard() {
                 </article>
               ))}
             </section>
+
+            {/* Tabela de produtos com estoque baixo */}
             <div className="tabela-container">
               <div className="tabela-section-header">
                 <div className="container-image">
@@ -116,6 +114,7 @@ export default function Dashboard() {
                 </tbody>
               </table>
             </div>
+
           </div>
         </main>
       </div>
