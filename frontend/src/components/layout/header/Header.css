@@ -167,15 +167,27 @@ header .header-actions .separator {
 
 header .header-actions .profile {
   display: flex;
+  flex-direction: column;
+  align-items: start;
+  position: relative;
+
+  cursor: pointer;
+}
+
+header .header-actions .profile:active {
+  transform: scale(0.975);
+}
+
+header .header-actions .profile .profile-container {
+  display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-header .header-actions .profile img {
+header .header-actions .profile .pfp {
   height: 3rem;
   border-radius: 50px;
   opacity: 1;
-  cursor: auto;
 }
 
 header .header-actions .profile img:active {
@@ -202,4 +214,46 @@ header .header-actions .profile .profile-data span {
   font-weight: 400;
   opacity: 0.5;
   color: var(--text);
+}
+
+header .header-actions .profile .arrow.right {
+  height: 1rem;
+  cursor: pointer;
+}
+
+header .header-actions .profile .arrow.up {
+  height: 1rem;
+  transform: rotate(-90deg);
+  cursor: pointer;
+}
+
+header .header-actions .profile .dropdown {
+  background-color: var(--background);
+  width: 100%;
+  border-radius: 16px;
+
+  position: absolute;
+  transform: translateY(100%);
+
+  box-shadow: 0px 8px 16px 4px rgba(0,0,0,0.1);
+
+}
+
+header .header-actions .profile .dropdown button {
+  font-size: 1rem;
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  padding-left: 1rem;
+  border-radius: 16px;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease-in-out;
+}
+
+header .header-actions .profile .dropdown button:hover {
+  background-color: var(--error);
+  color: var(--background);
 }

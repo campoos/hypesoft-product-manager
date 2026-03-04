@@ -4,6 +4,7 @@ import search from "../../../assets/header/search.png"
 import sun from "../../../assets/header/sun.png"
 import notification from "../../../assets/header/notification.png"
 import pfp from "../../../assets/header/pfp.png"
+import arrow from "../../../assets/header/arrow.png"
 
 import { useNavigate } from "react-router-dom";
 
@@ -14,6 +15,12 @@ import type { ProductResponse } from '../../../services/products.ts';
 
 export default function Header() {
     const navigate = useNavigate();
+
+    const [isDropdownOpen, setIsDropdownOpen] =useState(false)
+
+    const toggleDropdown = () => {
+        setIsDropdownOpen(prev => !prev)
+    }
 
     const [query, setQuery] = useState('');
         const [results, setResults] = useState<ProductResponse[]>([]);
@@ -83,12 +90,20 @@ export default function Header() {
 
             <div className="separator"></div>
 
-            <div className="profile">
-            <img src={pfp} alt="Profile picture" />
-            <div className="profile-data">
-                <h2>Henrique Araujo</h2>
-                <span>Administrador</span>
-            </div>
+            <div className="profile" onClick={toggleDropdown}>
+                <div className="profile-container">
+                    <img src={pfp} alt="Profile picture" className='pfp' />
+                    <div className="profile-data">
+                        <h2>Henrique Araujo</h2>
+                        <span>Administrador</span>
+                    </div>
+                    <img src={arrow} className={`arrow ${isDropdownOpen ? 'up' : 'right'}`} alt="" />
+                </div>
+                {isDropdownOpen && (
+                    <div className="dropdown">
+                        <button>Sair</button>
+                    </div>
+                )}
             </div>
         </nav>
     </header>
