@@ -44,6 +44,11 @@
     padding-left: 2rem;
 }
 
+.sidebarItem.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .sidebar nav ul .sidebarItem img {
     height: 1.5rem;
     opacity: 0.75;

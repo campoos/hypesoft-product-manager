@@ -35,7 +35,12 @@ export default function Sidebar() {
                 <div className="separator"></div>
 
                 <span>SUPORTE</span>
-                <Link to="/configuracoes" className={`sidebarItem ${location.pathname === "/configuracoes" ? "active" : ""}`}>
+                <Link 
+                    to="#"
+                    className="sidebarItem disabled"
+                    onClick={(e) => e.preventDefault()}
+                    title="Em desenvolvimento"
+                >
                     <img src={configsicon} alt="configuracoesIcon"/>
                     <span>Configurações</span>
                 </Link>
