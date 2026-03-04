@@ -7,6 +7,7 @@
 }
 
 .main-content header {
+    z-index: 15;
     padding: 0rem;
     display: flex;
     align-items: start;
@@ -23,6 +24,8 @@
     border: 1px solid rgba(0, 0, 0, 0.1);
     background-color: var(--background);
     cursor: pointer;
+
+    z-index: 19;
 }
 
 .main-content header button:active {
