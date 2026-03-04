@@ -13,8 +13,16 @@ import { useState, useEffect } from 'react';
 import { fetchProductsFiltered } from '../../../services/products.ts';
 import type { ProductResponse } from '../../../services/products.ts';
 
+import keycloak from '../../../auth/keycloak';
+
 export default function Header() {
     const navigate = useNavigate();
+
+    const handleLogout = () => {
+        keycloak.logout({
+            redirectUri: window.location.origin // volta para a página inicial após logout
+        });
+    };
 
     const [isDropdownOpen, setIsDropdownOpen] =useState(false)
 
@@ -101,7 +109,7 @@ export default function Header() {
                 </div>
                 {isDropdownOpen && (
                     <div className="dropdown">
-                        <button>Sair</button>
+                        <button onClick={handleLogout}>Sair</button>
                     </div>
                 )}
             </div>
