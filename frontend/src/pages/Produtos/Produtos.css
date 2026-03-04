@@ -28,7 +28,12 @@
     z-index: 19;
 }
 
-.main-content header button:active {
+.main-content header button:disabled {
+    opacity: 0.5;
+    cursor: auto;
+}
+
+.main-content header button:enabled:active {
     transform: scale(0.95);
 }
 
