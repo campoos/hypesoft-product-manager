@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import keycloak from '../../../keycloak'; // caminho da instância Keycloak
+import keycloak from './keycloak'; // caminho da instância Keycloak
 
 interface Props {
   children: React.ReactNode;

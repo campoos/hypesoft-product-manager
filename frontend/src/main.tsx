@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import AppRouter from './routes/AppRouter';
-import AuthWrapper from './components/auth/AuthWrapper.tsx';
+import AuthWrapper from './auth/AuthWrapper.tsx';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
