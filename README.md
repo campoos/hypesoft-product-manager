@@ -9,6 +9,7 @@ Projeto focado em boas práticas de desenvolvimento, organização de código e 
 - Frontend: React + Vite
 - Backend: .NET (C#)
 - Banco de dados: MongoDB
+- Autenticação: Keycloak (OpenID Connect)
 - Containerização: Docker + Docker Compose
 
 ## 📦 Pré-requisitos
@@ -41,6 +42,13 @@ cd ..
 docker-compose up --build
 ```
 
+Esse comando irá subir automaticamente:
+
+- API
+- Banco de dados (MongoDB)
+- Keycloak (autenticação)
+- Frontend
+
 ## 🌐 Acessos
 
 Após subir o projeto, acesse:
@@ -48,6 +56,18 @@ Após subir o projeto, acesse:
 - Frontend: http://localhost:3000
 - API (Swagger): http://localhost:5000/swagger
 - Mongo Express: http://localhost:8081
+- Keycloak: http://localhost:8080
+
+## 🔐 Autenticação
+
+O sistema utiliza o Keycloak para autenticação e autorização via OpenID Connect.
+
+### Credenciais padrão (ambiente local):
+
+- Usuário: admin
+- Senha: admin
+
+O realm e o client são configurados automaticamente via import no container.
 
 ## 📁 Estrutura do projeto
 ```bash
@@ -69,6 +89,9 @@ HYPERSOFT-PRODUCT-MANAGER/
 │       ├── hooks/
 │       └── utils/
 │
+├── keycloak/
+│   └── realm-export.json
+│
 ├── docs/
 │   └── images/
 │
@@ -85,14 +108,24 @@ O backend foi estruturado seguindo princípios de Clean Architecture:
 - **Domain**: Entidades e contratos
 - **Infrastructure**: Acesso a dados e integrações externas
 
-O frontend segue uma estrutura baseada em componentes reutilizáveis e separação por responsabilidade.
+O frontend segue uma arquitetura baseada em:
+
+- Componentização
+- Separação por responsabilidade
+- Consumo de API via services
+- Gerenciamento de estado com hooks
 
 ## ⚙️ Decisões técnicas
 
-- MongoDB utilizado pela flexibilidade de schema, facilitando a modelagem dos produtos e evolução da estrutura
-- Docker adotado para garantir padronização do ambiente e facilitar a execução do projeto
-- Arquitetura em camadas para melhor organização, manutenção e escalabilidade do backend
-- Vite utilizado no frontend pela rapidez no desenvolvimento e build
+- **MongDB** pela flexibilidade de schema e facilidade de evolução
+
+- **Docker** para padronização de ambiente e facilidade de execução
+
+- **Keycloak** para autenticação robusta e escalável
+
+- **Clean Architecture** para organização e manutenção do backend
+
+- **Vite** pela velocidade no desenvolvimento frontend
 
 ## 🔌 API
 
