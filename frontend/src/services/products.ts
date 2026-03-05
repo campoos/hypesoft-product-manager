@@ -1,7 +1,5 @@
-// src/services/products.ts
-import api from './api';
 
-// src/services/products.d.ts
+import api from './api';
 
 // Request para criar/atualizar produto
 export interface ProductRequest {
