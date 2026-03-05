@@ -88,6 +88,18 @@ O sistema utiliza o Keycloak para autenticação e autorização via OpenID Conn
 - Admin: acesso completo ao sistema (CRUD e dashboard)  
 - User: acesso restrito (visualização)
 
+## 🚀 Atualizações recentes
+
+Após a gravação do vídeo de demonstração, o projeto recebeu melhorias importantes:
+
+- Implementação de autenticação com Keycloak
+- Separação de perfis (admin e usuário)
+- Melhorias na arquitetura e organização do código
+- Ajustes na experiência do usuário
+- Criação da tela de categorias
+
+> ⚠️ O vídeo demonstra uma versão anterior do sistema, sem essas melhorias mais recentes.
+
 ## 📁 Estrutura do projeto
 ```bash
 HYPERSOFT-PRODUCT-MANAGER/
